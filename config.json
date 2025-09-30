@@ -5,7 +5,7 @@
   "sections": [
     {
       "id": "life",
-      "title": "Life Improvement",
+      "title": "Life Improve",
       "enabledByDefault": true,
       "sites": [
         "*://*.reddit.com/*"

@@ -14,6 +14,10 @@ function writeJson(filePath, data) {
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
 }
 
+function writeText(filePath, contents) {
+  fs.writeFileSync(filePath, contents, 'utf8');
+}
+
 function toHostPatterns(sites) {
   // Expand bare domains to MV3 host_permissions patterns
   const patterns = new Set();
@@ -32,8 +36,133 @@ function toHostPatterns(sites) {
 
 function toDnrFilter(domain) {
   // uBO-style urlFilter supported by MV3: ||domain^
-  const bare = domain.replace(/^\*\.:?/, '').replace(/^https?:\/\//, '').replace(/\/$/, '');
+  let bare = domain.trim();
+  // Strip schemes including wildcard schemes
+  bare = bare.replace(/^[a-z*]+:\/\//i, '');
+  // Strip leading wildcard subdomain
+  bare = bare.replace(/^\*\./, '');
+  // Strip trailing /* or /
+  bare = bare.replace(/\/\*$/, '');
+  bare = bare.replace(/\/$/, '');
   return `||${bare}^`;
+}
+
+function humanizeSitePattern(pattern) {
+  let s = pattern.trim();
+  s = s.replace(/^[a-z*]+:\/\//i, '');
+  s = s.replace(/^\*\./, '');
+  s = s.replace(/\/\*$/, '');
+  s = s.replace(/\/$/, '');
+  return s;
+}
+
+function generatePopupHtml(config) {
+  const buttonsHtml = config.sections
+    .map((section, idx) => {
+      const isEnabled = section.enabledByDefault !== false;
+      const className = isEnabled ? 'on' : 'off';
+      const stateText = isEnabled ? 'ON' : 'OFF';
+      const maybeMargin = idx ? ' style="margin-top:8px;"' : '';
+      return `    <div${maybeMargin}>
+      <button id="toggle-${section.id}" class="${className}">${section.title}: ${stateText}</button>
+    </div>`;
+    })
+    .join('\n');
+
+  const sitesHtml = config.sections
+    .map((section) => {
+      const readable = section.sites.map(humanizeSitePattern).join(', ');
+      return `    <small>${section.title}: ${readable}</small>`;
+    })
+    .join('\n');
+
+  return `<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Blocker</title>
+    <style>
+      body { font: 14px -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif; margin: 0; padding: 14px 16px; min-width: 220px; }
+      .status { font-weight: 600; margin-bottom: 8px; }
+      button { padding: 8px 12px; border: 0; border-radius: 10px; cursor: pointer; }
+      .on  { background: #1a73e8; color: #fff; }
+      .off { background: #e8eaed; color: #222; }
+      small { display:block; color:#667; margin-top:8px; }
+    </style>
+  </head>
+  <body>
+    <div class="status">Sections</div>
+${buttonsHtml}
+${sitesHtml}
+    <script src="popup.js"></script>
+  </body>
+ </html>
+`;
+}
+
+function generatePopupJs(config) {
+  const sectionsData = config.sections.map((s) => ({
+    id: s.id,
+    title: s.title,
+    enabledByDefault: s.enabledByDefault !== false
+  }));
+
+  return `(() => {
+  const sections = ${JSON.stringify(sectionsData, null, 2)};
+  const storageKeyFor = (id) => \`enabled_\${id}\`;
+  const getButton = (id) => document.getElementById(\`toggle-\${id}\`);
+
+  function render(buttonEl, title, enabled) {
+    buttonEl.textContent = \`${'${'}title}: ${'${'}enabled ? 'ON' : 'OFF'}\`;
+    buttonEl.className = enabled ? 'on' : 'off';
+  }
+
+  function getStates() {
+    return new Promise((resolve) => {
+      const keys = sections.map((s) => storageKeyFor(s.id));
+      chrome.storage.local.get(keys, (res) => {
+        const states = {};
+        for (const s of sections) {
+          const val = res[storageKeyFor(s.id)];
+          states[s.id] = typeof val === 'boolean' ? val : !!s.enabledByDefault;
+        }
+        resolve(states);
+      });
+    });
+  }
+
+  function setState(id, enabled) {
+    return new Promise((resolve) => chrome.storage.local.set({ [storageKeyFor(id)]: enabled }, resolve));
+  }
+
+  async function apply(states) {
+    const enable = [];
+    const disable = [];
+    for (const s of sections) {
+      if (states[s.id]) enable.push(s.id); else disable.push(s.id);
+    }
+    const ops = [];
+    if (enable.length) ops.push(chrome.declarativeNetRequest.updateEnabledRulesets({ enableRulesetIds: enable }));
+    if (disable.length) ops.push(chrome.declarativeNetRequest.updateEnabledRulesets({ disableRulesetIds: disable }));
+    await Promise.all(ops);
+  }
+
+  (async () => {
+    const states = await getStates();
+    for (const s of sections) {
+      const btn = getButton(s.id);
+      render(btn, s.title, states[s.id]);
+      btn.addEventListener('click', async () => {
+        const current = await getStates();
+        const next = { ...current, [s.id]: !current[s.id] };
+        await setState(s.id, next[s.id]);
+        await apply(next);
+        render(btn, s.title, next[s.id]);
+      });
+    }
+    apply(states);
+  })();
+})();`;
 }
 
 function build(configPath) {
@@ -52,9 +181,13 @@ function build(configPath) {
   ensureDir(buildDir);
 
   // Copy static files from src → build
-  for (const file of ['popup.html', 'popup.js', 'blocked.html', 'blocked.css']) {
+  for (const file of ['blocked.html', 'blocked.css']) {
     fs.copyFileSync(path.join(srcDir, file), path.join(buildDir, file));
   }
+
+  // Generate popup from config
+  writeText(path.join(buildDir, 'popup.html'), generatePopupHtml(config));
+  writeText(path.join(buildDir, 'popup.js'), generatePopupJs(config));
 
   // Generate per-section rules files
   const ruleResources = [];
