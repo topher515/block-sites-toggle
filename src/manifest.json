@@ -15,6 +15,7 @@
   "web_accessible_resources": [
     { "resources": ["blocked.html", "blocked.css"], "matches": ["<all_urls>"] }
   ],
-  "action": { "default_popup": "popup.html", "default_title": "Blocker" }
+  "action": { "default_popup": "popup.html", "default_title": "Blocker" },
+  "icons": { "128": "icon-128.png" }
 }
 

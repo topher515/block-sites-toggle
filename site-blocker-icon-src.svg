@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-label="Site Blocker Icon">
+  <!-- Outer browser window -->
+  <rect x="8" y="16" width="112" height="104" rx="14" fill="#000000"/>
+  <!-- Inner page area -->
+  <rect x="20" y="40" width="88" height="68" rx="10" fill="#FFFFFF"/>
+  <!-- Browser window dots -->
+  <circle cx="28" cy="28" r="4" fill="#FFFFFF"/>
+  <circle cx="42" cy="28" r="4" fill="#FFFFFF"/>
+  <circle cx="56" cy="28" r="4" fill="#FFFFFF"/>
+  <!-- Prohibition symbol -->
+  <circle cx="64" cy="74" r="22" fill="none" stroke="#000000" stroke-width="12"/>
+  <line x1="50" y1="60" x2="78" y2="88" stroke="#000000" stroke-width="12" stroke-linecap="round"/>
+</svg>

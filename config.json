@@ -5,7 +5,7 @@
   "sections": [
     {
       "id": "life",
-      "title": "Life Improve",
+      "title": "Life Improve 🫀",
       "enabledByDefault": true,
       "sites": [
         "*://*.reddit.com/*"
@@ -13,7 +13,7 @@
     },
     {
       "id": "work",
-      "title": "Work Focus",
+      "title": "Work Focus 🚧",
       "enabledByDefault": true,
       "sites": [
         "*://news.ycombinator.com/*",
