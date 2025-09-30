@@ -8,7 +8,7 @@
       "title": "Life Improvement",
       "enabledByDefault": true,
       "sites": [
-        "reddit.com"
+        "*://*.reddit.com/*"
       ]
     },
     {
@@ -16,8 +16,8 @@
       "title": "Work Focus",
       "enabledByDefault": true,
       "sites": [
-        "news.ycombinator.com",
-        "youtube.com"
+        "*://news.ycombinator.com/*",
+        "*://*.youtube.com/*"
       ]
     }
   ]

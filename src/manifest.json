@@ -7,15 +7,9 @@
     "declarativeNetRequest",
     "storage"
   ],
-  "host_permissions": [
-    "*://*.reddit.com/*",
-    "*://news.ycombinator.com/*",
-    "*://*.youtube.com/*"
-  ],
+  "host_permissions": [],
   "declarative_net_request": {
     "rule_resources": [
-      { "id": "life", "enabled": true, "path": "rules_life.json" },
-      { "id": "work", "enabled": true, "path": "rules_work.json" }
     ]
   },
   "web_accessible_resources": [
