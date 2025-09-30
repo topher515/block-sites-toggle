@@ -1,0 +1,5 @@
+html, body { height: 100%; margin: 0; }
+body { display: grid; place-items: center; background: #0b0f19; color: #e6edf3; font: 16px/1.5 -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif; }
+main { text-align: center; padding: 32px 40px; border-radius: 18px; background: #111827; box-shadow: 0 6px 30px rgba(0,0,0,.35); }
+h1 { margin: 0 0 8px; font-size: 28px; }
+p { margin: 0; opacity: .85; }

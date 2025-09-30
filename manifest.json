@@ -1,0 +1,44 @@
+{
+  "manifest_version": 3,
+  "name": "Block Sites (Toggle)",
+  "version": "1.1.0",
+  "description": "Tiny MV3 blocker with a toggle. Blocks reddit.com and news.ycombinator.com with a friendly message.",
+  "permissions": [
+    "declarativeNetRequest",
+    "storage"
+  ],
+  "host_permissions": [
+    "*://*.reddit.com/*",
+    "*://news.ycombinator.com/*",
+    "*://*.youtube.com/*"
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "life",
+        "enabled": true,
+        "path": "rules_life.json"
+      },
+      {
+        "id": "work",
+        "enabled": true,
+        "path": "rules_work.json"
+      }
+    ]
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "blocked.html",
+        "blocked.css"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Blocker"
+  }
+}
