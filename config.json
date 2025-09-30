@@ -1,0 +1,25 @@
+{
+  "name": "Block Sites (Toggle)",
+  "version": "1.1.0",
+  "description": "Tiny MV3 blocker with a toggle. Blocks reddit.com and news.ycombinator.com with a friendly message.",
+  "sections": [
+    {
+      "id": "life",
+      "title": "Life Improvement",
+      "enabledByDefault": true,
+      "sites": [
+        "reddit.com"
+      ]
+    },
+    {
+      "id": "work",
+      "title": "Work Focus",
+      "enabledByDefault": true,
+      "sites": [
+        "news.ycombinator.com",
+        "youtube.com"
+      ]
+    }
+  ]
+}
+

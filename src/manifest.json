@@ -14,31 +14,13 @@
   ],
   "declarative_net_request": {
     "rule_resources": [
-      {
-        "id": "life",
-        "enabled": true,
-        "path": "rules_life.json"
-      },
-      {
-        "id": "work",
-        "enabled": true,
-        "path": "rules_work.json"
-      }
+      { "id": "life", "enabled": true, "path": "rules_life.json" },
+      { "id": "work", "enabled": true, "path": "rules_work.json" }
     ]
   },
   "web_accessible_resources": [
-    {
-      "resources": [
-        "blocked.html",
-        "blocked.css"
-      ],
-      "matches": [
-        "<all_urls>"
-      ]
-    }
+    { "resources": ["blocked.html", "blocked.css"], "matches": ["<all_urls>"] }
   ],
-  "action": {
-    "default_popup": "popup.html",
-    "default_title": "Blocker"
-  }
+  "action": { "default_popup": "popup.html", "default_title": "Blocker" }
 }
+
