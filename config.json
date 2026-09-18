@@ -17,7 +17,8 @@
       "enabledByDefault": true,
       "sites": [
         "*://news.ycombinator.com/*",
-        "*://*.youtube.com/*"
+        "*://*.youtube.com/*",
+        "*://*.instagram.com/*"
       ]
     }
   ]
