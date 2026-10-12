@@ -1,5 +1,3 @@
-SHELL := /usr/local/bin/zsh
-
 NODE ?= node
 CONFIG ?= config.json
 BUILD_DIR ?= build
