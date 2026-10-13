@@ -1,0 +1,12 @@
+.fit { text-align: center; margin-top: 4vh; }
+.fit h1 { font-size: 30px; }
+.fit-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 20px; text-align: left; }
+.fit-card.suggested { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+.fit-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 8px 0 12px; }
+.fit-num { font-size: 26px; font-weight: 700; }
+.fit-bar { height: 6px; border-radius: 3px; background: var(--panel-2); overflow: hidden; margin-bottom: 14px; }
+.fit-bar span { display: block; height: 100%; background: var(--good); }
+.fit-actions input { width: 90px; }
+.fit-actions .primary { font-size: 18px; padding: 10px 20px; }
+.fit-undo { margin-top: 16px; }
+.fit-undo button { padding: 2px 8px; }

@@ -1,0 +1,12 @@
+name = "block-sites-sync"
+main = "src/index.js"
+compatibility_date = "2025-09-01"
+workers_dev = true
+preview_urls = false
+
+[[d1_databases]]
+binding = "DB"
+database_name = "block-sites-sync"
+# Replaced by deploy.sh with the real id after `wrangler d1 create`.
+database_id = "eb02b0e3-32b1-4ea6-83d8-3760f9fb2305"
+migrations_dir = "migrations"

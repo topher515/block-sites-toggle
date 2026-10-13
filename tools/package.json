@@ -1,0 +1,9 @@
+{
+  "name": "block-sites-toggle-tools",
+  "private": true,
+  "type": "module",
+  "description": "One-off asset generators. Not needed to build the extension.",
+  "dependencies": {
+    "d3-geo": "3.1.1"
+  }
+}

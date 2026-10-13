@@ -1,0 +1,85 @@
+/* Shared tokens and base styles for blocked, popup and options pages. */
+:root {
+  --bg: #f6f7f9;
+  --panel: #ffffff;
+  --panel-2: #eef0f4;
+  --text: #15181e;
+  --muted: #5e6675;
+  --border: #dde1e8;
+  --accent: #1a73e8;
+  --accent-text: #ffffff;
+  --good: #1e8e3e;
+  --bad: #d93025;
+  --warn: #b06000;
+  --map-land: #d5dae3;
+  --map-edge: #ffffff;
+  --map-other: #eceff3;
+  --radius: 14px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b0f19;
+    --panel: #111827;
+    --panel-2: #1b2333;
+    --text: #e6edf3;
+    --muted: #93a0b4;
+    --border: #263042;
+    --accent: #5b9cff;
+    --accent-text: #0b0f19;
+    --good: #4cc26e;
+    --bad: #ff6b5e;
+    --warn: #f0a33a;
+    --map-land: #34405a;
+    --map-edge: #111827;
+    --map-other: #222a3a;
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+h1, h2, h3 { line-height: 1.2; margin: 0 0 8px; }
+a { color: var(--accent); }
+.muted { color: var(--muted); }
+.small { font-size: 13px; }
+
+button, .btn {
+  font: inherit;
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--panel-2);
+  color: var(--text);
+  cursor: pointer;
+}
+button:hover { filter: brightness(1.05); }
+button:disabled { opacity: .5; cursor: default; }
+button.primary { background: var(--accent); color: var(--accent-text); border-color: transparent; font-weight: 600; }
+button.ghost { background: transparent; }
+button.on  { background: var(--accent); color: var(--accent-text); border-color: transparent; }
+
+input[type=text], input[type=number], input[type=url], input[type=password], textarea, select {
+  font: inherit;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+}
+textarea { width: 100%; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; }
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+.row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.stack > * + * { margin-top: 12px; }
+.num { font-variant-numeric: tabular-nums; }

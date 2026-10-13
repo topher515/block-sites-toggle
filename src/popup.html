@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Blocker</title>
+    <link rel="stylesheet" href="ui.css">
+    <style>
+      body { padding: 14px 16px; width: 280px; }
+      .label { font-weight: 600; margin-bottom: 8px; }
+      #sections button { width: 100%; text-align: left; margin-bottom: 6px; }
+      #sections small { display: block; color: var(--muted); margin: -2px 0 8px 4px; font-size: 12px; }
+      .mode { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); }
+      #summary, #sync { margin-top: 4px; }
+    </style>
+  </head>
+  <body>
+    <div class="label">Enable blocking</div>
+    <div id="sections"></div>
+    <div class="mode">
+      <div>Mode: <strong id="mode-title"></strong> · <a href="options.html" target="_blank">change…</a></div>
+      <div id="summary" class="muted small"></div>
+      <div id="sync" class="muted small"></div>
+    </div>
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>

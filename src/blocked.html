@@ -3,14 +3,17 @@
   <head>
     <meta charset="utf-8">
     <title>Stay focused</title>
-    <link rel="stylesheet" href="blocked.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="ui.css">
+    <link rel="stylesheet" href="blocked.css">
   </head>
   <body>
-    <main>
-      <h1>Stay focused</h1>
-      <p>Blocked by your settings. Sections can be toggled in the popup.</p>
-    </main>
+    <main id="mode"></main>
+    <footer>
+      <span id="blocked-host"></span>
+      · Mode: <span id="mode-title"></span>
+      · <a href="options.html" target="_blank">change</a>
+    </footer>
+    <script type="module" src="blocked.js"></script>
   </body>
- </html>
-
+</html>

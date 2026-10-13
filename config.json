@@ -1,7 +1,8 @@
 {
   "name": "Block Sites (Toggle)",
-  "version": "1.1.0",
-  "description": "Tiny configurable MV3 blocker with a toggle.",
+  "version": "2.0.0",
+  "description": "Blocks distracting sites and gives you something better to do instead.",
+  "defaultMode": "focus",
   "sections": [
     {
       "id": "life",
@@ -23,4 +24,3 @@
     }
   ]
 }
-

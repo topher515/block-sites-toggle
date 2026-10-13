@@ -1,0 +1,1 @@
+{ "type": "module", "private": true, "description": "Marks src/ as ES modules so node --test can import it. Not copied to build/." }

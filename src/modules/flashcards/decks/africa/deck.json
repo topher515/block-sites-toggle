@@ -1,0 +1,361 @@
+{
+ "id": "africa",
+ "title": "Africa: countries",
+ "prompt": "Which country is highlighted?",
+ "cards": [
+  {
+   "id": "DZ",
+   "answer": "Algeria",
+   "aliases": [],
+   "group": "North"
+  },
+  {
+   "id": "EG",
+   "answer": "Egypt",
+   "aliases": [],
+   "group": "North"
+  },
+  {
+   "id": "LY",
+   "answer": "Libya",
+   "aliases": [],
+   "group": "North"
+  },
+  {
+   "id": "MA",
+   "answer": "Morocco",
+   "aliases": [],
+   "group": "North"
+  },
+  {
+   "id": "SD",
+   "answer": "Sudan",
+   "aliases": [],
+   "group": "North"
+  },
+  {
+   "id": "TN",
+   "answer": "Tunisia",
+   "aliases": [],
+   "group": "North"
+  },
+  {
+   "id": "BJ",
+   "answer": "Benin",
+   "aliases": [],
+   "group": "West"
+  },
+  {
+   "id": "BF",
+   "answer": "Burkina Faso",
+   "aliases": [
+    "Burkina"
+   ],
+   "group": "West"
+  },
+  {
+   "id": "CV",
+   "answer": "Cabo Verde",
+   "aliases": [
+    "Cape Verde"
+   ],
+   "group": "West"
+  },
+  {
+   "id": "CI",
+   "answer": "Côte d'Ivoire",
+   "aliases": [
+    "Ivory Coast",
+    "Cote d Ivoire"
+   ],
+   "group": "West"
+  },
+  {
+   "id": "GM",
+   "answer": "Gambia",
+   "aliases": [
+    "The Gambia"
+   ],
+   "group": "West"
+  },
+  {
+   "id": "GH",
+   "answer": "Ghana",
+   "aliases": [],
+   "group": "West"
+  },
+  {
+   "id": "GN",
+   "answer": "Guinea",
+   "aliases": [],
+   "group": "West"
+  },
+  {
+   "id": "GW",
+   "answer": "Guinea-Bissau",
+   "aliases": [
+    "Guinea Bissau"
+   ],
+   "group": "West"
+  },
+  {
+   "id": "LR",
+   "answer": "Liberia",
+   "aliases": [],
+   "group": "West"
+  },
+  {
+   "id": "ML",
+   "answer": "Mali",
+   "aliases": [],
+   "group": "West"
+  },
+  {
+   "id": "MR",
+   "answer": "Mauritania",
+   "aliases": [],
+   "group": "West"
+  },
+  {
+   "id": "NE",
+   "answer": "Niger",
+   "aliases": [],
+   "group": "West"
+  },
+  {
+   "id": "NG",
+   "answer": "Nigeria",
+   "aliases": [],
+   "group": "West"
+  },
+  {
+   "id": "SN",
+   "answer": "Senegal",
+   "aliases": [],
+   "group": "West"
+  },
+  {
+   "id": "SL",
+   "answer": "Sierra Leone",
+   "aliases": [],
+   "group": "West"
+  },
+  {
+   "id": "TG",
+   "answer": "Togo",
+   "aliases": [],
+   "group": "West"
+  },
+  {
+   "id": "AO",
+   "answer": "Angola",
+   "aliases": [],
+   "group": "Central"
+  },
+  {
+   "id": "CM",
+   "answer": "Cameroon",
+   "aliases": [],
+   "group": "Central"
+  },
+  {
+   "id": "CF",
+   "answer": "Central African Republic",
+   "aliases": [
+    "CAR"
+   ],
+   "group": "Central"
+  },
+  {
+   "id": "TD",
+   "answer": "Chad",
+   "aliases": [],
+   "group": "Central"
+  },
+  {
+   "id": "CG",
+   "answer": "Republic of the Congo",
+   "aliases": [
+    "Congo",
+    "Congo-Brazzaville",
+    "Congo Brazzaville"
+   ],
+   "group": "Central"
+  },
+  {
+   "id": "CD",
+   "answer": "Democratic Republic of the Congo",
+   "aliases": [
+    "DRC",
+    "DR Congo",
+    "Congo-Kinshasa",
+    "Congo Kinshasa",
+    "Zaire"
+   ],
+   "group": "Central"
+  },
+  {
+   "id": "GQ",
+   "answer": "Equatorial Guinea",
+   "aliases": [],
+   "group": "Central"
+  },
+  {
+   "id": "GA",
+   "answer": "Gabon",
+   "aliases": [],
+   "group": "Central"
+  },
+  {
+   "id": "ST",
+   "answer": "São Tomé and Príncipe",
+   "aliases": [
+    "Sao Tome",
+    "Sao Tome and Principe"
+   ],
+   "group": "Central"
+  },
+  {
+   "id": "BI",
+   "answer": "Burundi",
+   "aliases": [],
+   "group": "East"
+  },
+  {
+   "id": "KM",
+   "answer": "Comoros",
+   "aliases": [],
+   "group": "East"
+  },
+  {
+   "id": "DJ",
+   "answer": "Djibouti",
+   "aliases": [],
+   "group": "East"
+  },
+  {
+   "id": "ER",
+   "answer": "Eritrea",
+   "aliases": [],
+   "group": "East"
+  },
+  {
+   "id": "ET",
+   "answer": "Ethiopia",
+   "aliases": [],
+   "group": "East"
+  },
+  {
+   "id": "KE",
+   "answer": "Kenya",
+   "aliases": [],
+   "group": "East"
+  },
+  {
+   "id": "MG",
+   "answer": "Madagascar",
+   "aliases": [],
+   "group": "East"
+  },
+  {
+   "id": "MW",
+   "answer": "Malawi",
+   "aliases": [],
+   "group": "East"
+  },
+  {
+   "id": "MU",
+   "answer": "Mauritius",
+   "aliases": [],
+   "group": "East"
+  },
+  {
+   "id": "MZ",
+   "answer": "Mozambique",
+   "aliases": [],
+   "group": "East"
+  },
+  {
+   "id": "RW",
+   "answer": "Rwanda",
+   "aliases": [],
+   "group": "East"
+  },
+  {
+   "id": "SC",
+   "answer": "Seychelles",
+   "aliases": [],
+   "group": "East"
+  },
+  {
+   "id": "SO",
+   "answer": "Somalia",
+   "aliases": [],
+   "group": "East"
+  },
+  {
+   "id": "SS",
+   "answer": "South Sudan",
+   "aliases": [],
+   "group": "East"
+  },
+  {
+   "id": "TZ",
+   "answer": "Tanzania",
+   "aliases": [],
+   "group": "East"
+  },
+  {
+   "id": "UG",
+   "answer": "Uganda",
+   "aliases": [],
+   "group": "East"
+  },
+  {
+   "id": "ZM",
+   "answer": "Zambia",
+   "aliases": [],
+   "group": "East"
+  },
+  {
+   "id": "ZW",
+   "answer": "Zimbabwe",
+   "aliases": [],
+   "group": "East"
+  },
+  {
+   "id": "BW",
+   "answer": "Botswana",
+   "aliases": [],
+   "group": "Southern"
+  },
+  {
+   "id": "SZ",
+   "answer": "Eswatini",
+   "aliases": [
+    "Swaziland"
+   ],
+   "group": "Southern"
+  },
+  {
+   "id": "LS",
+   "answer": "Lesotho",
+   "aliases": [],
+   "group": "Southern"
+  },
+  {
+   "id": "NA",
+   "answer": "Namibia",
+   "aliases": [],
+   "group": "Southern"
+  },
+  {
+   "id": "ZA",
+   "answer": "South Africa",
+   "aliases": [
+    "RSA"
+   ],
+   "group": "Southern"
+  }
+ ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "block-sites-sync",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev --local --port 8787",
+    "deploy": "./deploy.sh"
+  },
+  "devDependencies": {
+    "wrangler": "4.130.0"
+  }
+}

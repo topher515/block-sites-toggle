@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Blocker settings</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="ui.css">
+    <style>
+      body { padding: 32px 16px; }
+      main { max-width: 760px; margin: 0 auto; }
+      main > section { margin-bottom: 20px; }
+      .modes { display: grid; gap: 8px; }
+      .mode-opt { display: flex; gap: 12px; align-items: flex-start; padding: 12px; border: 1px solid var(--border); border-radius: 10px; cursor: pointer; }
+      .mode-opt.active { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+      .mode-opt input { margin-top: 4px; }
+      .site-section { border: 1px solid var(--border); border-radius: 10px; padding: 12px; }
+      .site-section input[type=text] { flex: 1; min-width: 160px; }
+      label.field { display: block; }
+      label.field input { width: 100%; margin-top: 4px; }
+      .status { min-height: 1.5em; }
+      .ok { color: var(--good); }
+      .err { color: var(--bad); white-space: pre-wrap; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Blocker settings</h1>
+      <p class="muted">What to block, and what to do instead.</p>
+
+      <section class="panel stack">
+        <h2>Mode</h2>
+        <p class="muted small">What the blocked page shows. Synced across your devices.</p>
+        <div id="modes" class="modes"></div>
+      </section>
+
+      <section class="panel stack">
+        <h2 id="mode-settings-title">Mode settings</h2>
+        <div id="mode-settings"></div>
+      </section>
+
+      <section class="panel stack">
+        <h2>Blocked sites</h2>
+        <p class="muted small">One domain per line. Subdomains are included. Turn sections on and off from the toolbar popup.</p>
+        <div id="site-sections" class="stack"></div>
+        <div class="row">
+          <button id="add-section">Add section</button>
+          <button id="save-sections" class="primary">Save sites</button>
+          <span id="sections-status" class="status small"></span>
+        </div>
+      </section>
+
+      <section class="panel stack">
+        <h2>Sync</h2>
+        <p class="muted small">Keeps counts, flashcard progress and settings the same on all your computers. Paste the worker URL and token from <code>sync.local.json</code> in the repo.</p>
+        <label class="field">Worker URL <input id="sync-url" type="url" placeholder="https://block-sites-sync.example.workers.dev"></label>
+        <label class="field">Token <input id="sync-token" type="password" autocomplete="off"></label>
+        <label class="field">This device's name <input id="device-name" type="text"></label>
+        <div class="row">
+          <button id="save-sync" class="primary">Save</button>
+          <button id="sync-now">Sync now</button>
+          <span id="sync-status" class="status small"></span>
+        </div>
+      </section>
+
+      <section class="panel stack">
+        <h2>Data</h2>
+        <p id="data-stats" class="muted small"></p>
+        <button id="export">Export everything (JSON)</button>
+      </section>
+    </main>
+    <script type="module" src="options.js"></script>
+  </body>
+</html>
