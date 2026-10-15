@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { replay, pickCard, questionKind, choices, INTERVALS, TYPED_FROM_BOX } from '../src/modules/flashcards/srs.js';
 import { check, normalize } from '../src/modules/flashcards/match.js';
+import { favoriteFact, randomFact } from '../src/modules/flashcards/facts.js';
 
 const deck = JSON.parse(fs.readFileSync(new URL('../src/modules/flashcards/decks/africa/deck.json', import.meta.url)));
 const card = (id) => deck.cards.find((c) => c.id === id);
@@ -73,10 +74,25 @@ test('typed answers: naming a different country is wrong even if one letter off'
   assert.ok(!check('Guinea', card('GQ'), deck.cards).ok);
 });
 
-test('africa deck: every country has a capital and at least one fact', () => {
+test('africa deck: every country has a capital and at least three facts', () => {
   assert.equal(deck.wikipedia, true);
   for (const c of deck.cards) {
     assert.ok(c.capital, c.id);
-    assert.ok(Array.isArray(c.facts) && c.facts.length >= 1 && c.facts.every((f) => f.length > 10), c.id);
+    assert.ok(Array.isArray(c.facts) && c.facts.length >= 3 && c.facts.every((f) => f.length > 10), c.id);
   }
+});
+
+test('favoriteFact: deck pick first, then the latest user pick that still exists', () => {
+  const ke = card('KE');
+  const pick = (fact, c = 'KE') => ({ data: { card: c, fact } });
+  assert.equal(favoriteFact(ke, []), ke.facts[0]);
+  assert.equal(favoriteFact(ke, [pick(ke.facts[2]), pick(ke.facts[1])]), ke.facts[1]);
+  assert.equal(favoriteFact(ke, [pick(ke.facts[2]), pick('a fact since removed from the deck')]), ke.facts[2]);
+  assert.equal(favoriteFact(ke, [pick(card('UG').facts[1], 'UG')]), ke.facts[0]);
+});
+
+test('randomFact never returns the favorite', () => {
+  const ke = card('KE');
+  for (const r of [0, 0.3, 0.6, 0.999]) assert.notEqual(randomFact(ke, ke.facts[0], () => r), ke.facts[0]);
+  assert.equal(randomFact({ facts: ['only'] }, 'only'), null);
 });

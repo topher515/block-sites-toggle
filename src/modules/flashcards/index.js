@@ -1,10 +1,12 @@
 // Flashcards engine. One mode per deck in decks.js. Each answer is a `review` event:
 //   { card, result: 'right'|'wrong'|'dunno', how: 'mc'|'typed' }
+// Choosing a card's most interesting fact is a `fact_pick` event (see facts.js).
 // Scheduling (srs.js) is recomputed from those events every time.
 import { h, useCss } from '../../core/dom.js';
 import { DECKS } from './decks.js';
 import { replay, pickCard, questionKind, choices, deckProgress, TYPED_FROM_BOX } from './srs.js';
 import { check } from './match.js';
+import { favoriteFact, randomFact } from './facts.js';
 
 const deckCache = new Map();
 async function loadDeck(ctx, deckId) {
@@ -23,15 +25,15 @@ function textRenderer(stage) {
   };
 }
 
-// What to show about a card after it's answered. `seen` picks a different fact each time.
-function cardInfo(deck, card, seen) {
-  const facts = card.facts || [];
-  const fact = facts.length ? facts[seen % facts.length] : null;
+// What to show about a card after it's answered: capital, the most interesting fact, one
+// random other fact (which the user can promote to most interesting), and a Wikipedia link.
+function cardInfo(deck, card, { fav, other, onPick }) {
   const wiki = deck.wikipedia ? card.wiki || card.answer.replaceAll(' ', '_') : null;
-  if (!card.capital && !fact && !wiki) return [];
   return [
     card.capital && h('p', { class: 'fc-capital' }, h('span', { class: 'muted' }, 'Capital: '), card.capital),
-    fact && h('p', { class: 'fc-fact' }, fact),
+    fav && h('p', { class: 'fc-fact fc-fav' }, h('span', { class: 'fc-fact-label' }, '★ Most interesting'), fav),
+    other && h('p', { class: 'fc-fact' }, h('span', { class: 'fc-fact-label' }, 'Did you know?'), other,
+      h('button', { class: 'ghost small fc-pick', title: 'Make this the most interesting fact', onclick: () => onPick(other) }, '★ More interesting')),
     wiki && h('a', { href: `https://en.wikipedia.org/wiki/${encodeURIComponent(wiki)}`, target: '_blank', rel: 'noopener', class: 'small' },
       `${card.answer} on Wikipedia ↗`),
   ];
@@ -157,7 +159,18 @@ function makeDeckMode(meta) {
           h('button', { class: 'primary fc-next', onclick: ask }, 'Another →'),
           h('span', { class: 'muted small' }, ' Enter'),
         );
-        info.replaceChildren(...cardInfo(deck, card, s.right + s.wrong - 1));
+        let fav = favoriteFact(card, await ctx.events({ type: 'fact_pick' }));
+        const showInfo = (other) => info.replaceChildren(...cardInfo(deck, card, {
+          fav,
+          other,
+          async onPick(fact) {
+            await ctx.log('fact_pick', { card: card.id, fact });
+            const old = fav;
+            fav = fact;
+            showInfo(old); // keep the old favorite on screen so the swap can be reversed
+          },
+        }));
+        showInfo(randomFact(card, fav));
         feedback.querySelector('.fc-next').focus();
         await updateProgress(states);
       }

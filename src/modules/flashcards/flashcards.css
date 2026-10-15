@@ -28,5 +28,8 @@
 @media (max-width: 480px) { .fc-choices { grid-template-columns: 1fr; } }
 .fc-info { max-width: 520px; margin-top: 8px; }
 .fc-info:empty { display: none; }
-.fc-info p { margin: 4px 0; }
+.fc-info p { margin: 6px 0; }
 .fc-fact { font-size: 15px; }
+.fc-fact-label { display: block; font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+.fc-fav .fc-fact-label { color: var(--accent); }
+.fc-pick { margin-left: 8px; padding: 2px 8px; font-size: 12px; }
