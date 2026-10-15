@@ -26,3 +26,7 @@
 .fc-feedback.dunno > span:first-child { font-weight: 600; }
 .fc-progress { margin-top: 18px; }
 @media (max-width: 480px) { .fc-choices { grid-template-columns: 1fr; } }
+.fc-info { max-width: 520px; margin-top: 8px; }
+.fc-info:empty { display: none; }
+.fc-info p { margin: 4px 0; }
+.fc-fact { font-size: 15px; }

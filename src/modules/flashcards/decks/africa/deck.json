@@ -2,48 +2,84 @@
  "id": "africa",
  "title": "Africa: countries",
  "prompt": "Which country is highlighted?",
+ "wikipedia": true,
  "cards": [
   {
    "id": "DZ",
    "answer": "Algeria",
    "aliases": [],
-   "group": "North"
+   "group": "North",
+   "capital": "Algiers",
+   "facts": [
+    "The largest country in Africa by area — over 80% of it is Sahara.",
+    "Algeria won independence from France in 1962 after an eight-year war."
+   ]
   },
   {
    "id": "EG",
    "answer": "Egypt",
    "aliases": [],
-   "group": "North"
+   "group": "North",
+   "capital": "Cairo",
+   "facts": [
+    "About 95% of Egyptians live along the Nile, on roughly 5% of the land.",
+    "The Suez Canal, opened in 1869, links the Mediterranean to the Red Sea."
+   ]
   },
   {
    "id": "LY",
    "answer": "Libya",
    "aliases": [],
-   "group": "North"
+   "group": "North",
+   "capital": "Tripoli",
+   "facts": [
+    "Libya has the largest proven oil reserves in Africa.",
+    "More than 90% of the country is desert."
+   ]
   },
   {
    "id": "MA",
    "answer": "Morocco",
    "aliases": [],
-   "group": "North"
+   "group": "North",
+   "capital": "Rabat",
+   "facts": [
+    "Only about 14 km of water (the Strait of Gibraltar) separates Morocco from Spain.",
+    "The University of al-Qarawiyyin in Fez, founded in 859, is often called the world's oldest operating university."
+   ]
   },
   {
    "id": "SD",
    "answer": "Sudan",
    "aliases": [],
-   "group": "North"
+   "group": "North",
+   "capital": "Khartoum",
+   "facts": [
+    "Sudan has more pyramids than Egypt — about 200, built by the Nubian kingdoms of Kush and Meroë.",
+    "The Blue Nile and White Nile meet at Khartoum."
+   ]
   },
   {
    "id": "TN",
    "answer": "Tunisia",
    "aliases": [],
-   "group": "North"
+   "group": "North",
+   "capital": "Tunis",
+   "facts": [
+    "The ruins of ancient Carthage, Rome's great rival, are in a suburb of Tunis.",
+    "The Arab Spring began here in December 2010."
+   ]
   },
   {
    "id": "BJ",
    "answer": "Benin",
    "aliases": [],
-   "group": "West"
+   "group": "West",
+   "capital": "Porto-Novo (seat of government: Cotonou)",
+   "facts": [
+    "Benin was the heart of the Kingdom of Dahomey, known for its all-female soldier regiments.",
+    "Vodun (voodoo) originated here; January 10 is a national Vodun holiday."
+   ]
   },
   {
    "id": "BF",
@@ -51,7 +87,12 @@
    "aliases": [
     "Burkina"
    ],
-   "group": "West"
+   "group": "West",
+   "capital": "Ouagadougou",
+   "facts": [
+    "The name means roughly “land of upright people”. It was called Upper Volta until 1984.",
+    "Ouagadougou hosts FESPACO, Africa's biggest film festival."
+   ]
   },
   {
    "id": "CV",
@@ -59,7 +100,13 @@
    "aliases": [
     "Cape Verde"
    ],
-   "group": "West"
+   "group": "West",
+   "capital": "Praia",
+   "facts": [
+    "An archipelago of 10 volcanic islands about 570 km off Senegal; uninhabited until the Portuguese arrived in the 1460s.",
+    "Home of morna music, made famous by the “barefoot diva” Cesária Évora."
+   ],
+   "wiki": "Cape_Verde"
   },
   {
    "id": "CI",
@@ -68,7 +115,13 @@
     "Ivory Coast",
     "Cote d Ivoire"
    ],
-   "group": "West"
+   "group": "West",
+   "capital": "Yamoussoukro (largest city: Abidjan)",
+   "facts": [
+    "The world's largest cocoa producer — around 40% of the global crop.",
+    "Yamoussoukro's Basilica of Our Lady of Peace is one of the largest churches in the world."
+   ],
+   "wiki": "Ivory_Coast"
   },
   {
    "id": "GM",
@@ -76,19 +129,34 @@
    "aliases": [
     "The Gambia"
    ],
-   "group": "West"
+   "group": "West",
+   "capital": "Banjul",
+   "facts": [
+    "The smallest country on mainland Africa: a thin strip along the Gambia River, surrounded by Senegal except at the coast."
+   ],
+   "wiki": "The_Gambia"
   },
   {
    "id": "GH",
    "answer": "Ghana",
    "aliases": [],
-   "group": "West"
+   "group": "West",
+   "capital": "Accra",
+   "facts": [
+    "In 1957 Ghana became the first sub-Saharan African colony to win independence, led by Kwame Nkrumah.",
+    "Lake Volta is the largest artificial reservoir in the world by surface area."
+   ]
   },
   {
    "id": "GN",
    "answer": "Guinea",
    "aliases": [],
-   "group": "West"
+   "group": "West",
+   "capital": "Conakry",
+   "facts": [
+    "Guinea has the world's largest reserves of bauxite, the ore of aluminium.",
+    "Called the “water tower of West Africa”: the Niger, Senegal and Gambia rivers all start here."
+   ]
   },
   {
    "id": "GW",
@@ -96,67 +164,122 @@
    "aliases": [
     "Guinea Bissau"
    ],
-   "group": "West"
+   "group": "West",
+   "capital": "Bissau",
+   "facts": [
+    "The Bijagós Archipelago is a cluster of about 88 islands, a UNESCO biosphere reserve.",
+    "Cashew nuts make up the vast majority of its exports."
+   ]
   },
   {
    "id": "LR",
    "answer": "Liberia",
    "aliases": [],
-   "group": "West"
+   "group": "West",
+   "capital": "Monrovia",
+   "facts": [
+    "Founded by freed Black Americans; independent since 1847 and never colonized.",
+    "Monrovia is named after US President James Monroe."
+   ]
   },
   {
    "id": "ML",
    "answer": "Mali",
    "aliases": [],
-   "group": "West"
+   "group": "West",
+   "capital": "Bamako",
+   "facts": [
+    "Mansa Musa, 14th-century ruler of the Mali Empire, is often called the richest person in history.",
+    "The Great Mosque of Djenné is the largest mud-brick building in the world."
+   ]
   },
   {
    "id": "MR",
    "answer": "Mauritania",
    "aliases": [],
-   "group": "West"
+   "group": "West",
+   "capital": "Nouakchott",
+   "facts": [
+    "The Richat Structure, the “Eye of the Sahara”, is a 40 km-wide set of rings visible from space.",
+    "Its iron-ore trains are among the longest in the world, over 2 km long."
+   ]
   },
   {
    "id": "NE",
    "answer": "Niger",
    "aliases": [],
-   "group": "West"
+   "group": "West",
+   "capital": "Niamey",
+   "facts": [
+    "Named after the Niger River; about 80% of the country is in the Sahara.",
+    "It has one of the youngest populations in the world — the median age is around 15."
+   ]
   },
   {
    "id": "NG",
    "answer": "Nigeria",
    "aliases": [],
-   "group": "West"
+   "group": "West",
+   "capital": "Abuja (largest city: Lagos)",
+   "facts": [
+    "Africa's most populous country, with over 200 million people.",
+    "Nollywood is one of the largest film industries in the world by number of films made."
+   ]
   },
   {
    "id": "SN",
    "answer": "Senegal",
    "aliases": [],
-   "group": "West"
+   "group": "West",
+   "capital": "Dakar",
+   "facts": [
+    "Home to the westernmost point of mainland Africa, near Dakar.",
+    "Gorée Island, off Dakar, is a memorial to the Atlantic slave trade."
+   ]
   },
   {
    "id": "SL",
    "answer": "Sierra Leone",
    "aliases": [],
-   "group": "West"
+   "group": "West",
+   "capital": "Freetown",
+   "facts": [
+    "Freetown was founded in 1792 as a settlement for freed slaves.",
+    "The name comes from Portuguese “Serra Leoa” — lion mountains."
+   ]
   },
   {
    "id": "TG",
    "answer": "Togo",
    "aliases": [],
-   "group": "West"
+   "group": "West",
+   "capital": "Lomé",
+   "facts": [
+    "Togo is very narrow: under 100 km wide but more than 500 km long.",
+    "Lomé's Akodésséwa fetish market sells ingredients for traditional Vodun remedies."
+   ]
   },
   {
    "id": "AO",
    "answer": "Angola",
    "aliases": [],
-   "group": "Central"
+   "group": "Central",
+   "capital": "Luanda",
+   "facts": [
+    "Its province of Cabinda is cut off from the rest of the country by a strip of the DR Congo.",
+    "One of Africa's biggest oil producers; a Portuguese colony until 1975."
+   ]
   },
   {
    "id": "CM",
    "answer": "Cameroon",
    "aliases": [],
-   "group": "Central"
+   "group": "Central",
+   "capital": "Yaoundé (largest city: Douala)",
+   "facts": [
+    "Called “Africa in miniature” for having beaches, desert, mountains, savanna and rainforest.",
+    "Mount Cameroon (4,040 m) is an active volcano and the highest peak in West and Central Africa."
+   ]
   },
   {
    "id": "CF",
@@ -164,13 +287,23 @@
    "aliases": [
     "CAR"
    ],
-   "group": "Central"
+   "group": "Central",
+   "capital": "Bangui",
+   "facts": [
+    "Landlocked near the geographic centre of the continent.",
+    "In 1977 its leader Jean-Bédel Bokassa crowned himself emperor in a ceremony costing about a third of the national budget."
+   ]
   },
   {
    "id": "TD",
    "answer": "Chad",
    "aliases": [],
-   "group": "Central"
+   "group": "Central",
+   "capital": "N'Djamena",
+   "facts": [
+    "Named after Lake Chad, which has shrunk by about 90% since the 1960s.",
+    "Emi Koussi, in the Tibesti Mountains, is the highest point in the Sahara."
+   ]
   },
   {
    "id": "CG",
@@ -180,7 +313,12 @@
     "Congo-Brazzaville",
     "Congo Brazzaville"
    ],
-   "group": "Central"
+   "group": "Central",
+   "capital": "Brazzaville",
+   "facts": [
+    "Brazzaville and Kinshasa face each other across the Congo River — the closest pair of capital cities apart from Rome and Vatican City.",
+    "Roughly two-thirds of the country is covered by rainforest."
+   ]
   },
   {
    "id": "CD",
@@ -192,19 +330,35 @@
     "Congo Kinshasa",
     "Zaire"
    ],
-   "group": "Central"
+   "group": "Central",
+   "capital": "Kinshasa",
+   "facts": [
+    "The second-largest country in Africa by area.",
+    "The Congo River is the deepest river in the world, over 220 m in places.",
+    "Produces about 70% of the world's cobalt, used in phone and car batteries."
+   ]
   },
   {
    "id": "GQ",
    "answer": "Equatorial Guinea",
    "aliases": [],
-   "group": "Central"
+   "group": "Central",
+   "capital": "Malabo",
+   "facts": [
+    "The only African country where Spanish is an official language.",
+    "Its capital, Malabo, is on Bioko Island, not on the mainland."
+   ]
   },
   {
    "id": "GA",
    "answer": "Gabon",
    "aliases": [],
-   "group": "Central"
+   "group": "Central",
+   "capital": "Libreville",
+   "facts": [
+    "Almost 90% of Gabon is forest.",
+    "It has 13 national parks; in Loango, elephants and hippos walk on the beach."
+   ]
   },
   {
    "id": "ST",
@@ -213,121 +367,222 @@
     "Sao Tome",
     "Sao Tome and Principe"
    ],
-   "group": "Central"
+   "group": "Central",
+   "capital": "São Tomé",
+   "facts": [
+    "Africa's second-smallest country, sitting almost exactly on the equator.",
+    "Around 1908 it was the world's largest cocoa producer."
+   ]
   },
   {
    "id": "BI",
    "answer": "Burundi",
    "aliases": [],
-   "group": "East"
+   "group": "East",
+   "capital": "Gitega (largest city: Bujumbura)",
+   "facts": [
+    "Lies on Lake Tanganyika, the world's second-deepest lake.",
+    "The Royal Drummers of Burundi are a UNESCO-listed tradition."
+   ]
   },
   {
    "id": "KM",
    "answer": "Comoros",
    "aliases": [],
-   "group": "East"
+   "group": "East",
+   "capital": "Moroni",
+   "facts": [
+    "A leading producer of ylang-ylang, an oil used in perfumes like Chanel No. 5.",
+    "The coelacanth, a fish thought extinct for 66 million years, lives in its waters."
+   ]
   },
   {
    "id": "DJ",
    "answer": "Djibouti",
    "aliases": [],
-   "group": "East"
+   "group": "East",
+   "capital": "Djibouti City",
+   "facts": [
+    "Lake Assal, 155 m below sea level, is the lowest point in Africa.",
+    "Guarding the entrance to the Red Sea, it hosts military bases of the US, France, China, Japan and others."
+   ]
   },
   {
    "id": "ER",
    "answer": "Eritrea",
    "aliases": [],
-   "group": "East"
+   "group": "East",
+   "capital": "Asmara",
+   "facts": [
+    "Asmara's Italian-era modernist architecture is a UNESCO World Heritage Site.",
+    "Became independent from Ethiopia in 1993 after a 30-year war."
+   ]
   },
   {
    "id": "ET",
    "answer": "Ethiopia",
    "aliases": [],
-   "group": "East"
+   "group": "East",
+   "capital": "Addis Ababa",
+   "facts": [
+    "Coffee was first discovered here, according to legend by a goat herder named Kaldi.",
+    "Uses its own calendar, about 7–8 years behind the Gregorian one, with 13 months.",
+    "Never colonized, apart from a brief Italian occupation (1936–41). The African Union is headquartered in Addis Ababa."
+   ]
   },
   {
    "id": "KE",
    "answer": "Kenya",
    "aliases": [],
-   "group": "East"
+   "group": "East",
+   "capital": "Nairobi",
+   "facts": [
+    "Each year over a million wildebeest migrate through the Maasai Mara.",
+    "Nairobi National Park has lions and rhinos with the city skyline in view."
+   ]
   },
   {
    "id": "MG",
    "answer": "Madagascar",
    "aliases": [],
-   "group": "East"
+   "group": "East",
+   "capital": "Antananarivo",
+   "facts": [
+    "About 90% of its wildlife exists nowhere else — including every species of lemur.",
+    "The world's fourth-largest island."
+   ]
   },
   {
    "id": "MW",
    "answer": "Malawi",
    "aliases": [],
-   "group": "East"
+   "group": "East",
+   "capital": "Lilongwe",
+   "facts": [
+    "Lake Malawi has more fish species than any other lake on Earth — hundreds of kinds of cichlid.",
+    "Known as “the warm heart of Africa”."
+   ]
   },
   {
    "id": "MU",
    "answer": "Mauritius",
    "aliases": [],
-   "group": "East"
+   "group": "East",
+   "capital": "Port Louis",
+   "facts": [
+    "The only home of the dodo, extinct by the late 1600s.",
+    "An island nation in the Indian Ocean, about 2,000 km off the African coast."
+   ]
   },
   {
    "id": "MZ",
    "answer": "Mozambique",
    "aliases": [],
-   "group": "East"
+   "group": "East",
+   "capital": "Maputo",
+   "facts": [
+    "Its flag is the only national flag featuring a modern rifle (an AK-47).",
+    "Has about 2,500 km of Indian Ocean coastline."
+   ]
   },
   {
    "id": "RW",
    "answer": "Rwanda",
    "aliases": [],
-   "group": "East"
+   "group": "East",
+   "capital": "Kigali",
+   "facts": [
+    "Known as the “land of a thousand hills”.",
+    "Women hold over 60% of seats in parliament — the highest share in the world.",
+    "Home to mountain gorillas in Volcanoes National Park."
+   ]
   },
   {
    "id": "SC",
    "answer": "Seychelles",
    "aliases": [],
-   "group": "East"
+   "group": "East",
+   "capital": "Victoria",
+   "facts": [
+    "Africa's smallest country by population, about 100,000 people on 115 islands.",
+    "The coco de mer palm grows the largest seed in the plant kingdom."
+   ]
   },
   {
    "id": "SO",
    "answer": "Somalia",
    "aliases": [],
-   "group": "East"
+   "group": "East",
+   "capital": "Mogadishu",
+   "facts": [
+    "Has the longest coastline of any country on mainland Africa, around 3,000 km."
+   ]
   },
   {
    "id": "SS",
    "answer": "South Sudan",
    "aliases": [],
-   "group": "East"
+   "group": "East",
+   "capital": "Juba",
+   "facts": [
+    "The world's newest widely recognized country, independent from Sudan since 2011.",
+    "The Sudd is one of the largest wetlands in the world."
+   ]
   },
   {
    "id": "TZ",
    "answer": "Tanzania",
    "aliases": [],
-   "group": "East"
+   "group": "East",
+   "capital": "Dodoma (largest city: Dar es Salaam)",
+   "facts": [
+    "Mount Kilimanjaro (5,895 m) is the highest mountain in Africa.",
+    "Includes the island of Zanzibar, once a hub of the spice trade."
+   ]
   },
   {
    "id": "UG",
    "answer": "Uganda",
    "aliases": [],
-   "group": "East"
+   "group": "East",
+   "capital": "Kampala",
+   "facts": [
+    "The White Nile leaves Lake Victoria at Jinja.",
+    "Bwindi Forest is home to about half of the world's mountain gorillas."
+   ]
   },
   {
    "id": "ZM",
    "answer": "Zambia",
    "aliases": [],
-   "group": "East"
+   "group": "East",
+   "capital": "Lusaka",
+   "facts": [
+    "Shares Victoria Falls — “Mosi-oa-Tunya”, the smoke that thunders — with Zimbabwe.",
+    "One of the world's biggest copper producers."
+   ]
   },
   {
    "id": "ZW",
    "answer": "Zimbabwe",
    "aliases": [],
-   "group": "East"
+   "group": "East",
+   "capital": "Harare",
+   "facts": [
+    "Named after Great Zimbabwe, a stone city built between the 11th and 15th centuries.",
+    "In 2008 inflation was so high it printed a 100-trillion-dollar note."
+   ]
   },
   {
    "id": "BW",
    "answer": "Botswana",
    "aliases": [],
-   "group": "Southern"
+   "group": "Southern",
+   "capital": "Gaborone",
+   "facts": [
+    "The Okavango Delta is a river delta that never reaches the sea — it drains into the Kalahari.",
+    "Has the largest elephant population in the world, around 130,000."
+   ]
   },
   {
    "id": "SZ",
@@ -335,19 +590,34 @@
    "aliases": [
     "Swaziland"
    ],
-   "group": "Southern"
+   "group": "Southern",
+   "capital": "Mbabane (royal & legislative: Lobamba)",
+   "facts": [
+    "One of the last absolute monarchies in the world.",
+    "Renamed from Swaziland to Eswatini in 2018."
+   ]
   },
   {
    "id": "LS",
    "answer": "Lesotho",
    "aliases": [],
-   "group": "Southern"
+   "group": "Southern",
+   "capital": "Maseru",
+   "facts": [
+    "Completely surrounded by South Africa.",
+    "The whole country is above 1,400 m — the highest “lowest point” of any country."
+   ]
   },
   {
    "id": "NA",
    "answer": "Namibia",
    "aliases": [],
-   "group": "Southern"
+   "group": "Southern",
+   "capital": "Windhoek",
+   "facts": [
+    "The Namib is thought to be the world's oldest desert, with some of the tallest sand dunes.",
+    "The first country to write environmental protection into its constitution."
+   ]
   },
   {
    "id": "ZA",
@@ -355,7 +625,12 @@
    "aliases": [
     "RSA"
    ],
-   "group": "Southern"
+   "group": "Southern",
+   "capital": "Pretoria, Cape Town & Bloemfontein",
+   "facts": [
+    "Has three capitals: Pretoria (executive), Cape Town (parliament) and Bloemfontein (courts).",
+    "Has 12 official languages, including South African Sign Language."
+   ]
   }
  ]
 }

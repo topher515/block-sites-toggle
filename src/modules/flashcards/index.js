@@ -23,6 +23,20 @@ function textRenderer(stage) {
   };
 }
 
+// What to show about a card after it's answered. `seen` picks a different fact each time.
+function cardInfo(deck, card, seen) {
+  const facts = card.facts || [];
+  const fact = facts.length ? facts[seen % facts.length] : null;
+  const wiki = deck.wikipedia ? card.wiki || card.answer.replaceAll(' ', '_') : null;
+  if (!card.capital && !fact && !wiki) return [];
+  return [
+    card.capital && h('p', { class: 'fc-capital' }, h('span', { class: 'muted' }, 'Capital: '), card.capital),
+    fact && h('p', { class: 'fc-fact' }, fact),
+    wiki && h('a', { href: `https://en.wikipedia.org/wiki/${encodeURIComponent(wiki)}`, target: '_blank', rel: 'noopener', class: 'small' },
+      `${card.answer} on Wikipedia ↗`),
+  ];
+}
+
 function makeDeckMode(meta) {
   return {
     id: `flashcards-${meta.id}`,
@@ -41,8 +55,9 @@ function makeDeckMode(meta) {
       const prompt = h('h2', { class: 'fc-prompt' });
       const answerArea = h('div', { class: 'fc-answer' });
       const feedback = h('div', { class: 'fc-feedback', 'aria-live': 'polite' });
+      const info = h('div', { class: 'fc-info' });
       const progress = h('p', { class: 'fc-progress muted small num' });
-      el.replaceChildren(h('div', { class: 'fc' }, stage, prompt, answerArea, feedback, progress));
+      el.replaceChildren(h('div', { class: 'fc' }, stage, prompt, answerArea, feedback, info, progress));
 
       const assetUrl = (rel) => ctx.assetUrl(`decks/${meta.id}/${rel}`);
       const renderer = meta.renderer
@@ -73,6 +88,7 @@ function makeDeckMode(meta) {
         prompt.textContent = card.question || deck.prompt;
         feedback.replaceChildren();
         feedback.className = 'fc-feedback';
+        info.replaceChildren();
 
         const dunno = h('button', { class: 'ghost fc-dunno', onclick: () => answer('dunno', kind) }, "I don't know");
         if (kind === 'mc') {
@@ -141,6 +157,7 @@ function makeDeckMode(meta) {
           h('button', { class: 'primary fc-next', onclick: ask }, 'Another →'),
           h('span', { class: 'muted small' }, ' Enter'),
         );
+        info.replaceChildren(...cardInfo(deck, card, s.right + s.wrong - 1));
         feedback.querySelector('.fc-next').focus();
         await updateProgress(states);
       }
@@ -148,7 +165,7 @@ function makeDeckMode(meta) {
       document.addEventListener('keydown', (e) => {
         if (!current) return;
         if (current.answered) {
-          if (e.key === 'Enter' && document.activeElement?.tagName !== 'BUTTON') ask();
+          if (e.key === 'Enter' && !['BUTTON', 'A'].includes(document.activeElement?.tagName)) ask();
           return;
         }
         if (current.kind !== 'mc') return;
