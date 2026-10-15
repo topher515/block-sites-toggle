@@ -11,9 +11,12 @@
       #sections small { display: block; color: var(--muted); margin: -2px 0 8px 4px; font-size: 12px; }
       .mode { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); }
       #summary, #sync { margin-top: 4px; }
+      #warn { color: var(--bad); font-size: 12px; margin-bottom: 8px; }
+      #warn:empty { display: none; }
     </style>
   </head>
   <body>
+    <div id="warn"></div>
     <div class="label">Enable blocking</div>
     <div id="sections"></div>
     <div class="mode">

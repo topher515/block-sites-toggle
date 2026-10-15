@@ -1,6 +1,5 @@
 // Service worker: keeps blocking rules in sync with settings, and runs sync.
-import { buildRules } from './core/rules.js';
-import { getSections, getEnabled } from './core/settings.js';
+import { applyRulesNow } from './core/blocking.js';
 import { syncNow } from './core/sync.js';
 
 const SYNC_ALARM = 'sync';
@@ -13,18 +12,10 @@ function applyRules() {
   return chain;
 }
 
-async function applyRulesNow() {
-  const sections = await getSections();
-  const enabled = await getEnabled(sections);
-  const rules = buildRules(sections, enabled, chrome.runtime.getURL('blocked.html'));
-  const existing = await chrome.declarativeNetRequest.getDynamicRules();
-  await chrome.declarativeNetRequest.updateDynamicRules({
-    removeRuleIds: existing.map((r) => r.id),
-    addRules: rules,
-  });
-}
-
+// chrome.alarms is undefined if the browser has not granted the permission. Blocking must
+// still work then, so nothing here may throw at load time.
 async function ensureAlarm() {
+  if (!chrome.alarms) return;
   if (!(await chrome.alarms.get(SYNC_ALARM))) {
     await chrome.alarms.create(SYNC_ALARM, { periodInMinutes: SYNC_MINUTES, delayInMinutes: 1 });
   }
@@ -51,7 +42,7 @@ chrome.storage.onChanged.addListener((changes, area) => {
   if (settingsChanged || toggled) applyRules();
 });
 
-chrome.alarms.onAlarm.addListener((alarm) => {
+chrome.alarms?.onAlarm.addListener((alarm) => {
   if (alarm.name === SYNC_ALARM) syncNow();
 });
 

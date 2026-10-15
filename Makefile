@@ -14,7 +14,7 @@ package: build
 	cd $(BUILD_DIR) && zip -r ../extension.zip .
 
 test:
-	$(NODE) --test test/
+	$(NODE) --test test/*.test.mjs
 
 # make new-module NAME=meditate TITLE="Meditate 🧘"
 new-module:
