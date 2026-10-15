@@ -9,7 +9,6 @@
    "answer": "Algeria",
    "aliases": [],
    "group": "North",
-   "capital": "Algiers",
    "facts": [
     "Rock paintings at Tassili n'Ajjer show giraffes and herds of cattle — from thousands of years ago, when the Sahara was green.",
     "The largest country in Africa by area — over 80% of it is Sahara.",
@@ -22,7 +21,6 @@
    "answer": "Egypt",
    "aliases": [],
    "group": "North",
-   "capital": "Cairo",
    "facts": [
     "Cleopatra lived closer in time to the Moon landing than to the building of the Great Pyramid.",
     "About 95% of Egyptians live along the Nile, on roughly 5% of the land.",
@@ -35,7 +33,6 @@
    "answer": "Libya",
    "aliases": [],
    "group": "North",
-   "capital": "Tripoli",
    "facts": [
     "The Great Man-Made River pumps ancient groundwater from under the Sahara to coastal cities — one of the biggest water projects on Earth.",
     "For 90 years Libya held the record for the hottest temperature ever (58 °C, 1922) — until it was thrown out as a measuring error in 2012.",
@@ -48,7 +45,6 @@
    "answer": "Morocco",
    "aliases": [],
    "group": "North",
-   "capital": "Rabat",
    "facts": [
     "The University of al-Qarawiyyin in Fez, founded in 859 by a woman, Fatima al-Fihri, is often called the world's oldest operating university.",
     "Only about 14 km of water — the Strait of Gibraltar — separates Morocco from Spain.",
@@ -61,7 +57,6 @@
    "answer": "Sudan",
    "aliases": [],
    "group": "North",
-   "capital": "Khartoum",
    "facts": [
     "Sudan has more pyramids than Egypt — about 200, built by the Nubian kingdoms of Kush and Meroë.",
     "The Blue Nile and White Nile meet at Khartoum.",
@@ -74,7 +69,6 @@
    "answer": "Tunisia",
    "aliases": [],
    "group": "North",
-   "capital": "Tunis",
    "facts": [
     "Star Wars filmed Luke Skywalker's home planet here — “Tatooine” is named after the Tunisian town of Tataouine.",
     "The ruins of ancient Carthage, Rome's great rival, are in a suburb of Tunis.",
@@ -87,7 +81,6 @@
    "answer": "Benin",
    "aliases": [],
    "group": "West",
-   "capital": "Porto-Novo (seat of government: Cotonou)",
    "facts": [
     "Vodun (voodoo) originated here, and January 10 is a national Vodun holiday.",
     "The Kingdom of Dahomey had an all-female army regiment — the inspiration for the film The Woman King.",
@@ -102,7 +95,6 @@
     "Burkina"
    ],
    "group": "West",
-   "capital": "Ouagadougou",
    "facts": [
     "Its architect Francis Kéré became the first African to win the Pritzker Prize, architecture's top award, in 2022.",
     "The name means roughly “land of upright people”. It was called Upper Volta until 1984.",
@@ -116,7 +108,6 @@
     "Cape Verde"
    ],
    "group": "West",
-   "capital": "Praia",
    "facts": [
     "On Fogo island people live and grow wine inside the crater of an active volcano — it last erupted in 2014.",
     "An archipelago of 10 volcanic islands about 570 km off Senegal; uninhabited until the Portuguese arrived in the 1460s.",
@@ -132,7 +123,6 @@
     "Cote d Ivoire"
    ],
    "group": "West",
-   "capital": "Yamoussoukro (largest city: Abidjan)",
    "facts": [
     "In 2005 football star Didier Drogba knelt on live TV and begged both sides of the civil war to lay down their weapons — a ceasefire followed within a week.",
     "The world's largest cocoa producer — around 40% of the global crop.",
@@ -148,7 +138,6 @@
     "The Gambia"
    ],
    "group": "West",
-   "capital": "Banjul",
    "facts": [
     "The smallest country on mainland Africa: a thin strip along the Gambia River, surrounded by Senegal except at the coast.",
     "Legend says its borders were set by how far a British gunboat's cannon could fire from the river.",
@@ -161,7 +150,6 @@
    "answer": "Ghana",
    "aliases": [],
    "group": "West",
-   "capital": "Accra",
    "facts": [
     "Ghanaian “fantasy coffins” are carved in the shape of what the person loved — a fish, a plane, a Coke bottle.",
     "In 1957 Ghana became the first sub-Saharan African colony to win independence, led by Kwame Nkrumah.",
@@ -174,7 +162,6 @@
    "answer": "Guinea",
    "aliases": [],
    "group": "West",
-   "capital": "Conakry",
    "facts": [
     "Called the “water tower of West Africa”: the Niger, Senegal and Gambia rivers all start here.",
     "Has the world's largest reserves of bauxite, the ore of aluminium.",
@@ -188,7 +175,6 @@
     "Guinea Bissau"
    ],
    "group": "West",
-   "capital": "Bissau",
    "facts": [
     "In the Bijagós islands, hippos swim in the sea between islands.",
     "The Bijagós Archipelago is a cluster of about 88 islands, a UNESCO biosphere reserve.",
@@ -200,7 +186,6 @@
    "answer": "Liberia",
    "aliases": [],
    "group": "West",
-   "capital": "Monrovia",
    "facts": [
     "Founded by freed Black Americans; independent since 1847 and never colonized. Its flag looks like the US flag with one star.",
     "Monrovia is named after US President James Monroe.",
@@ -212,7 +197,6 @@
    "answer": "Mali",
    "aliases": [],
    "group": "West",
-   "capital": "Bamako",
    "facts": [
     "Mansa Musa, 14th-century ruler of the Mali Empire, gave away so much gold on his trip to Mecca that its price in Cairo crashed for years.",
     "The Great Mosque of Djenné is the largest mud-brick building in the world.",
@@ -224,7 +208,6 @@
    "answer": "Mauritania",
    "aliases": [],
    "group": "West",
-   "capital": "Nouakchott",
    "facts": [
     "The Richat Structure, the “Eye of the Sahara”, is a 40 km-wide set of rings visible from space.",
     "Its iron-ore trains are among the longest in the world, over 2 km long.",
@@ -236,7 +219,6 @@
    "answer": "Niger",
    "aliases": [],
    "group": "West",
-   "capital": "Niamey",
    "facts": [
     "The Ténéré Tree, once the most isolated tree on Earth, was knocked down by a truck driver in 1973.",
     "Named after the Niger River; about 80% of the country is in the Sahara.",
@@ -249,7 +231,6 @@
    "answer": "Nigeria",
    "aliases": [],
    "group": "West",
-   "capital": "Abuja (largest city: Lagos)",
    "facts": [
     "Africa's most populous country, with over 200 million people.",
     "More than 500 languages are spoken in Nigeria.",
@@ -262,7 +243,6 @@
    "answer": "Senegal",
    "aliases": [],
    "group": "West",
-   "capital": "Dakar",
    "facts": [
     "Lake Retba is bright pink, coloured by salt-loving algae.",
     "Home to the westernmost point of mainland Africa, near Dakar.",
@@ -275,7 +255,6 @@
    "answer": "Sierra Leone",
    "aliases": [],
    "group": "West",
-   "capital": "Freetown",
    "facts": [
     "The Cotton Tree, a giant tree in central Freetown, was the city's symbol for over 200 years until a storm toppled it in 2023.",
     "Freetown was founded in 1792 as a settlement for freed slaves.",
@@ -287,7 +266,6 @@
    "answer": "Togo",
    "aliases": [],
    "group": "West",
-   "capital": "Lomé",
    "facts": [
     "Togo is very narrow: under 100 km wide but more than 500 km long, with only about 56 km of coast.",
     "Lomé's Akodésséwa fetish market sells ingredients for traditional Vodun remedies.",
@@ -299,7 +277,6 @@
    "answer": "Angola",
    "aliases": [],
    "group": "Central",
-   "capital": "Luanda",
    "facts": [
     "The giant sable antelope, feared wiped out by the civil war, was rediscovered by camera traps in the 2000s.",
     "Its province of Cabinda is cut off from the rest of the country by a strip of the DR Congo.",
@@ -311,7 +288,6 @@
    "answer": "Cameroon",
    "aliases": [],
    "group": "Central",
-   "capital": "Yaoundé (largest city: Douala)",
    "facts": [
     "In 1986 Lake Nyos suddenly released a cloud of carbon dioxide that suffocated about 1,700 people.",
     "Called “Africa in miniature” for having beaches, desert, mountains, savanna and rainforest.",
@@ -326,7 +302,6 @@
     "CAR"
    ],
    "group": "Central",
-   "capital": "Bangui",
    "facts": [
     "In 1977 its leader Jean-Bédel Bokassa crowned himself emperor in a ceremony costing about a third of the national budget.",
     "Landlocked near the geographic centre of the continent.",
@@ -338,7 +313,6 @@
    "answer": "Chad",
    "aliases": [],
    "group": "Central",
-   "capital": "N'Djamena",
    "facts": [
     "The Bodélé Depression is the biggest dust source on Earth — its dust blows across the Atlantic and helps fertilize the Amazon.",
     "Named after Lake Chad, which has shrunk by about 90% since the 1960s.",
@@ -355,7 +329,6 @@
     "Congo Brazzaville"
    ],
    "group": "Central",
-   "capital": "Brazzaville",
    "facts": [
     "Brazzaville and Kinshasa face each other across the Congo River — the closest pair of capital cities apart from Rome and Vatican City.",
     "Brazzaville is named after the explorer Pierre Savorgnan de Brazza, who is buried there.",
@@ -374,7 +347,6 @@
     "Zaire"
    ],
    "group": "Central",
-   "capital": "Kinshasa",
    "facts": [
     "Bonobos — with chimpanzees, our closest living relatives — live in the wild only here.",
     "The Congo River is the deepest river in the world, over 220 m in places.",
@@ -388,7 +360,6 @@
    "answer": "Equatorial Guinea",
    "aliases": [],
    "group": "Central",
-   "capital": "Malabo",
    "facts": [
     "Despite its name, almost none of it is on the Equator — only its tiny island of Annobón lies south of it.",
     "The only African country where Spanish is an official language.",
@@ -400,7 +371,6 @@
    "answer": "Gabon",
    "aliases": [],
    "group": "Central",
-   "capital": "Libreville",
    "facts": [
     "About 2 billion years ago, natural nuclear reactors ran underground at Oklo — the only ones ever found on Earth.",
     "Almost 90% of Gabon is forest.",
@@ -415,7 +385,6 @@
     "Sao Tome and Principe"
    ],
    "group": "Central",
-   "capital": "São Tomé",
    "facts": [
     "Pico Cão Grande is a needle of volcanic rock rising over 300 m straight out of the jungle.",
     "Africa's second-smallest country; the Equator runs right across its islet Ilhéu das Rolas.",
@@ -427,7 +396,6 @@
    "answer": "Burundi",
    "aliases": [],
    "group": "East",
-   "capital": "Gitega (largest city: Bujumbura)",
    "facts": [
     "One of the claimed southernmost sources of the Nile is a spring in Burundi, marked with a small pyramid.",
     "Lies on Lake Tanganyika, the world's second-deepest lake.",
@@ -439,7 +407,6 @@
    "answer": "Comoros",
    "aliases": [],
    "group": "East",
-   "capital": "Moroni",
    "facts": [
     "The coelacanth, a fish thought extinct for 66 million years, was found alive in its waters.",
     "A leading producer of ylang-ylang, a flower oil used in perfumes.",
@@ -452,7 +419,6 @@
    "answer": "Djibouti",
    "aliases": [],
    "group": "East",
-   "capital": "Djibouti City",
    "facts": [
     "Africa is slowly splitting apart here, where three tectonic plates pull away from each other.",
     "Lake Assal, 155 m below sea level, is the lowest point in Africa — and one of the saltiest lakes on Earth.",
@@ -464,7 +430,6 @@
    "answer": "Eritrea",
    "aliases": [],
    "group": "East",
-   "capital": "Asmara",
    "facts": [
     "Asmara's Fiat Tagliero building, from 1938, is a petrol station shaped like an aeroplane.",
     "Asmara's Italian-era modernist architecture is a UNESCO World Heritage Site.",
@@ -477,7 +442,6 @@
    "answer": "Ethiopia",
    "aliases": [],
    "group": "East",
-   "capital": "Addis Ababa",
    "facts": [
     "Uses its own calendar: 13 months, and about 7–8 years behind the Gregorian one.",
     "Coffee was first discovered here — legend credits a goat herder named Kaldi.",
@@ -491,7 +455,6 @@
    "answer": "Kenya",
    "aliases": [],
    "group": "East",
-   "capital": "Nairobi",
    "facts": [
     "Kenyan men won the Olympic steeplechase at every Games they took part in from 1968 to 2016.",
     "Each year over a million wildebeest migrate through the Maasai Mara.",
@@ -504,7 +467,6 @@
    "answer": "Madagascar",
    "aliases": [],
    "group": "East",
-   "capital": "Antananarivo",
    "facts": [
     "Its first settlers sailed from Borneo about 1,500 years ago — Malagasy is related to languages of Indonesia.",
     "About 90% of its wildlife exists nowhere else — including every species of lemur.",
@@ -516,7 +478,6 @@
    "answer": "Malawi",
    "aliases": [],
    "group": "East",
-   "capital": "Lilongwe",
    "facts": [
     "Lake Malawi has more fish species than any other lake on Earth — hundreds of kinds of cichlid.",
     "Lake Malawi covers about a fifth of the country.",
@@ -528,7 +489,6 @@
    "answer": "Mauritius",
    "aliases": [],
    "group": "East",
-   "capital": "Port Louis",
    "facts": [
     "The only home of the dodo, extinct by the late 1600s.",
     "The “underwater waterfall” off Le Morne is an illusion made by sand sliding into deep water.",
@@ -540,7 +500,6 @@
    "answer": "Mozambique",
    "aliases": [],
    "group": "East",
-   "capital": "Maputo",
    "facts": [
     "Its flag is the only national flag featuring a modern rifle (an AK-47).",
     "Ilha de Moçambique, a small coral island, was the colonial capital for centuries and gave the country its name.",
@@ -552,7 +511,6 @@
    "answer": "Rwanda",
    "aliases": [],
    "group": "East",
-   "capital": "Kigali",
    "facts": [
     "Women hold over 60% of seats in parliament — the highest share in the world.",
     "Known as the “land of a thousand hills”.",
@@ -565,7 +523,6 @@
    "answer": "Seychelles",
    "aliases": [],
    "group": "East",
-   "capital": "Victoria",
    "facts": [
     "Aldabra Atoll is home to about 100,000 giant tortoises.",
     "The coco de mer palm grows the largest seed in the plant kingdom.",
@@ -578,7 +535,6 @@
    "answer": "Somalia",
    "aliases": [],
    "group": "East",
-   "capital": "Mogadishu",
    "facts": [
     "Has the longest coastline of any country on mainland Africa, around 3,000 km.",
     "Somalia has been called “a nation of poets” for its strong oral poetry tradition.",
@@ -591,7 +547,6 @@
    "answer": "South Sudan",
    "aliases": [],
    "group": "East",
-   "capital": "Juba",
    "facts": [
     "The world's newest widely recognized country, independent from Sudan since 2011.",
     "Millions of antelope migrate across it each year — one of the largest land migrations on Earth.",
@@ -603,7 +558,6 @@
    "answer": "Tanzania",
    "aliases": [],
    "group": "East",
-   "capital": "Dodoma (largest city: Dar es Salaam)",
    "facts": [
     "Freddie Mercury, of Queen, was born in Zanzibar.",
     "Mount Kilimanjaro (5,895 m) is the highest mountain in Africa.",
@@ -616,7 +570,6 @@
    "answer": "Uganda",
    "aliases": [],
    "group": "East",
-   "capital": "Kampala",
    "facts": [
     "The Rwenzori — the “Mountains of the Moon” — have glaciers almost on the Equator.",
     "The White Nile leaves Lake Victoria at Jinja.",
@@ -628,7 +581,6 @@
    "answer": "Zambia",
    "aliases": [],
    "group": "East",
-   "capital": "Lusaka",
    "facts": [
     "In the dry season you can swim in Devil's Pool, right at the edge of Victoria Falls.",
     "Shares Victoria Falls — “Mosi-oa-Tunya”, the smoke that thunders — with Zimbabwe.",
@@ -641,7 +593,6 @@
    "answer": "Zimbabwe",
    "aliases": [],
    "group": "East",
-   "capital": "Harare",
    "facts": [
     "In 2008 inflation was so high it printed a 100-trillion-dollar note.",
     "Named after Great Zimbabwe, a stone city built between the 11th and 15th centuries.",
@@ -654,7 +605,6 @@
    "answer": "Botswana",
    "aliases": [],
    "group": "Southern",
-   "capital": "Gaborone",
    "facts": [
     "The Okavango Delta is a river delta that never reaches the sea — it drains into the Kalahari.",
     "Has the largest elephant population in the world, around 130,000.",
@@ -669,7 +619,6 @@
     "Swaziland"
    ],
    "group": "Southern",
-   "capital": "Mbabane (royal & legislative: Lobamba)",
    "facts": [
     "One of the last absolute monarchies in the world.",
     "Renamed from Swaziland to Eswatini in 2018.",
@@ -682,7 +631,6 @@
    "answer": "Lesotho",
    "aliases": [],
    "group": "Southern",
-   "capital": "Maseru",
    "facts": [
     "The whole country is above 1,400 m — the highest “lowest point” of any country.",
     "Completely surrounded by South Africa.",
@@ -695,7 +643,6 @@
    "answer": "Namibia",
    "aliases": [],
    "group": "Southern",
-   "capital": "Windhoek",
    "facts": [
     "The Hoba meteorite, the largest known, weighs about 60 tonnes and still lies where it fell.",
     "The Namib is thought to be the world's oldest desert, with some of the tallest sand dunes.",
@@ -710,7 +657,6 @@
     "RSA"
    ],
    "group": "Southern",
-   "capital": "Pretoria, Cape Town & Bloemfontein",
    "facts": [
     "Two Nobel Peace Prize winners, Nelson Mandela and Desmond Tutu, lived on the same street in Soweto.",
     "Has three capitals: Pretoria (executive), Cape Town (parliament) and Bloemfontein (courts).",

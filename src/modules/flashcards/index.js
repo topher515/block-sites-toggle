@@ -25,12 +25,11 @@ function textRenderer(stage) {
   };
 }
 
-// What to show about a card after it's answered: capital, the most interesting fact, one
+// What to show about a card after it's answered: the most interesting fact, one
 // random other fact (which the user can promote to most interesting), and a Wikipedia link.
 function cardInfo(deck, card, { fav, other, onPick }) {
   const wiki = deck.wikipedia ? card.wiki || card.answer.replaceAll(' ', '_') : null;
   return [
-    card.capital && h('p', { class: 'fc-capital' }, h('span', { class: 'muted' }, 'Capital: '), card.capital),
     fav && h('p', { class: 'fc-fact fc-fav' }, h('span', { class: 'fc-fact-label' }, '★ Most interesting'), fav),
     other && h('p', { class: 'fc-fact' }, h('span', { class: 'fc-fact-label' }, 'Did you know?'), other,
       h('button', { class: 'ghost small fc-pick', title: 'Make this the most interesting fact', onclick: () => onPick(other) }, '★ More interesting')),

@@ -30,6 +30,8 @@
 .fc-info:empty { display: none; }
 .fc-info p { margin: 6px 0; }
 .fc-fact { font-size: 15px; }
+.fc-fact:not(.fc-fav) { font-size: 13px; color: var(--muted); }
+.fc-fact:not(.fc-fav) .fc-fact-label { font-weight: 500; }
 .fc-fact-label { display: block; font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
 .fc-fav .fc-fact-label { color: var(--accent); }
 .fc-pick { margin-left: 8px; padding: 2px 8px; font-size: 12px; }

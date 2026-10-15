@@ -74,10 +74,9 @@ test('typed answers: naming a different country is wrong even if one letter off'
   assert.ok(!check('Guinea', card('GQ'), deck.cards).ok);
 });
 
-test('africa deck: every country has a capital and at least three facts', () => {
+test('africa deck: every country has at least three facts', () => {
   assert.equal(deck.wikipedia, true);
   for (const c of deck.cards) {
-    assert.ok(c.capital, c.id);
     assert.ok(Array.isArray(c.facts) && c.facts.length >= 3 && c.facts.every((f) => f.length > 10), c.id);
   }
 });
