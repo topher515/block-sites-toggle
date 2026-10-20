@@ -16,6 +16,13 @@ test('africa deck has 54 unique countries, all on the map', () => {
   for (const c of deck.cards) assert.ok(svg.includes(`data-id="${c.id}"`), c.id);
 });
 
+test('africa deck: shape stories are text or null', () => {
+  for (const c of deck.cards) {
+    if (!('shape' in c)) continue;
+    assert.ok(c.shape === null || (typeof c.shape === 'string' && c.shape.length > 40), c.id);
+  }
+});
+
 test('replay: right moves up, wrong and dunno reset', () => {
   const s = replay([review('KE', 'right', 1), review('KE', 'right', 2), review('UG', 'right', 1), review('UG', 'dunno', 5)]);
   assert.equal(s.get('KE').box, 2);

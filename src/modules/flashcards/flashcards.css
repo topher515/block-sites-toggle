@@ -29,6 +29,8 @@
 .fc-info { max-width: 520px; margin-top: 8px; }
 .fc-info:empty { display: none; }
 .fc-info p { margin: 6px 0; }
+.fc-shape { font-size: 15px; line-height: 1.45; }
+.fc-shape .fc-fact-label { color: var(--accent); }
 .fc-fact { font-size: 15px; }
 .fc-fact:not(.fc-fav) { font-size: 13px; color: var(--muted); }
 .fc-fact:not(.fc-fav) .fc-fact-label { font-weight: 500; }
