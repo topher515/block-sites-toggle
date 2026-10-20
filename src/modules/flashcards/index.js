@@ -68,6 +68,10 @@ function makeDeckMode(meta) {
       let current = null; // { card, kind, answered }
       let lastCardId = null;
       const byId = new Map(deck.cards.map((c) => [c.id, c]));
+      // Space acts on keydown, but a focused button clicks on Space keyup, and focus lands on
+      // "Another" right after answering. Swallow that keyup so one press doesn't skip a card.
+      let swallowSpaceUp = false;
+      const takeSpace = (e) => { e.preventDefault(); swallowSpaceUp = true; };
 
       async function updateProgress(states) {
         const p = deckProgress(deck.cards, states);
@@ -99,7 +103,7 @@ function makeDeckMode(meta) {
               opts.map((c, i) =>
                 h('button', { class: 'fc-choice', 'data-key': i + 1, onclick: () => answer(c.id === card.id ? 'right' : 'wrong', 'mc', { picked: c.id }) },
                   h('span', { class: 'fc-key' }, i + 1), c.answer))),
-            h('div', { class: 'row fc-sub' }, dunno, h('span', { class: 'muted small' }, 'Keys: 1–4, 0 = don’t know')),
+            h('div', { class: 'row fc-sub' }, dunno, h('span', { class: 'muted small' }, 'Keys: 1–4, Space or 0 = don’t know')),
           );
         } else {
           const input = h('input', { type: 'text', class: 'fc-input', placeholder: 'Type the answer', autocomplete: 'off', spellcheck: 'false' });
@@ -112,10 +116,11 @@ function makeDeckMode(meta) {
             e.stopPropagation(); // keep the page-level Enter = "Another" from firing too
             if (e.key === 'Enter') submit();
             if (e.key === 'Escape') answer('dunno', 'typed');
+            if (e.key === ' ' && !input.value.trim()) { takeSpace(e); answer('dunno', 'typed'); }
           });
           answerArea.replaceChildren(
             h('div', { class: 'row fc-typed' }, input, h('button', { class: 'primary', onclick: submit }, 'Check')),
-            h('div', { class: 'row fc-sub' }, dunno, h('span', { class: 'muted small' }, 'Enter = check, Esc = don’t know')),
+            h('div', { class: 'row fc-sub' }, dunno, h('span', { class: 'muted small' }, 'Enter = check, Esc or Space (empty box) = don’t know')),
           );
           input.focus();
         }
@@ -156,7 +161,7 @@ function makeDeckMode(meta) {
         feedback.replaceChildren(
           h('span', {}, msg),
           h('button', { class: 'primary fc-next', onclick: ask }, 'Another →'),
-          h('span', { class: 'muted small' }, ' Enter'),
+          h('span', { class: 'muted small' }, ' Space / Enter'),
         );
         let fav = favoriteFact(card, await ctx.events({ type: 'fact_pick' }));
         const showInfo = (other) => info.replaceChildren(...cardInfo(deck, card, {
@@ -176,15 +181,26 @@ function makeDeckMode(meta) {
 
       document.addEventListener('keydown', (e) => {
         if (!current) return;
+        const focused = document.activeElement;
         if (current.answered) {
-          if (e.key === 'Enter' && !['BUTTON', 'A'].includes(document.activeElement?.tagName)) ask();
+          if (e.key === 'Enter' && !['BUTTON', 'A'].includes(focused?.tagName)) ask();
+          // Space continues unless it's meant for another button or link (e.g. "★ More interesting").
+          if (e.key === ' ' && !e.repeat && (focused?.classList.contains('fc-next') || !['BUTTON', 'A'].includes(focused?.tagName))) {
+            takeSpace(e);
+            ask();
+          }
           return;
         }
         if (current.kind !== 'mc') return;
         if (e.key === '0' || e.key === '?') answer('dunno', 'mc');
+        if (e.key === ' ' && !e.repeat) { takeSpace(e); answer('dunno', 'mc'); }
         const btn = answerArea.querySelector(`.fc-choice[data-key="${e.key}"]`);
         if (btn) btn.click();
       });
+
+      document.addEventListener('keyup', (e) => {
+        if (e.key === ' ' && swallowSpaceUp) { e.preventDefault(); swallowSpaceUp = false; }
+      }, true);
 
       await ask();
     },
