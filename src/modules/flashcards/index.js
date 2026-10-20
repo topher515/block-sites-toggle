@@ -170,6 +170,7 @@ function makeDeckMode(meta) {
           h('span', { class: 'muted small' }, ' Space / Enter'),
         );
         let fav = favoriteFact(card, await ctx.events({ type: 'fact_pick' }));
+        // replaceChildren would print a missing item as "null", so drop them.
         const showInfo = (other) => info.replaceChildren(...cardInfo(deck, card, {
           fav,
           other,
@@ -179,7 +180,7 @@ function makeDeckMode(meta) {
             fav = fact;
             showInfo(old); // keep the old favorite on screen so the swap can be reversed
           },
-        }));
+        }).filter(Boolean));
         showInfo(randomFact(card, fav));
         feedback.querySelector('.fc-next').focus();
         await updateProgress(states);
