@@ -28,7 +28,11 @@ function textRenderer(stage) {
 // What to show about a card after it's answered: why it has that shape or name (card.shape,
 // null when there's no good story), the most interesting fact, one random other fact (which
 // the user can promote to most interesting), and a Wikipedia link.
+// The facts take up too much room next to the shape text; hidden for now, data and picks kept.
+const SHOW_FACTS = false;
+
 function cardInfo(deck, card, { fav, other, onPick }) {
+  if (!SHOW_FACTS) fav = other = null;
   const wiki = deck.wikipedia ? card.wiki || card.answer.replaceAll(' ', '_') : null;
   return [
     card.shape && h('p', { class: 'fc-shape' }, h('span', { class: 'fc-fact-label' }, 'Why it looks like this'), card.shape),
