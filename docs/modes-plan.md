@@ -35,8 +35,8 @@ export default {
   description: 'Log push-ups and pull-ups instead of scrolling.',
   defaultSettings: {
     exercises: [
-      { id: 'pushup', label: 'Push-ups', step: 1 },
-      { id: 'pullup', label: 'Pull-ups', step: 1 },
+      { id: 'pushup', label: 'Push-ups' },
+      { id: 'pullup', label: 'Pull-ups' },
     ],
   },
 
@@ -100,7 +100,7 @@ Local storage is IndexedDB (or `chrome.storage.local` with `unlimitedStorage` to
 The current page, plus today's bounce count by host from `blocked_visit` events. This needs the blocked URL (see §6).
 
 ### Fitness
-- A big `+1` button per exercise (step set in settings), plus a custom amount and undo.
+- A small and a big button per exercise (`+1` and `+5` unless the exercise sets `steps`), plus a custom amount and undo. The card you last logged shows "Logged 7, just now. Undo"; Undo cancels today's latest run (taps on one exercise under a minute apart), so ten quick taps undo as one. It's worked out from the events, so it survives a reload.
 - Three numbers per exercise: **today**, **last 7 days**, **ever**. Optional daily goal with a progress bar, and optionally a streak.
 - Counting is self-reported taps. Camera rep counting (MediaPipe pose, run locally) is possible later but heavy, so it isn't in v1.
 
