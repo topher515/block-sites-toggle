@@ -26,6 +26,7 @@ export default {
     exercises: [
       { id: 'pushup', label: 'Push-ups', step: 1, dailyGoal: 50 },
       { id: 'pullup', label: 'Pull-ups', step: 1, dailyGoal: 20 },
+      { id: 'grip', label: 'Grip squeezes', step: 1, dailyGoal: 100 },
     ],
   },
 
