@@ -8,6 +8,8 @@ import { favoriteFact, randomFact } from '../src/modules/flashcards/facts.js';
 const deck = JSON.parse(fs.readFileSync(new URL('../src/modules/flashcards/decks/africa/deck.json', import.meta.url)));
 const card = (id) => deck.cards.find((c) => c.id === id);
 const review = (cardId, result, ts) => ({ ts, data: { card: cardId, result, how: 'mc' } });
+const MIN = 60_000;
+const DAY = 24 * 60 * MIN;
 
 test('africa deck has 54 unique countries, all on the map', () => {
   assert.equal(deck.cards.length, 54);
@@ -40,16 +42,35 @@ test('questionKind graduates to typing at TYPED_FROM_BOX', () => {
 
 test('pickCard prefers due cards, then new cards up to maxLearning', () => {
   const cards = deck.cards.slice(0, 10);
-  const now = 10_000_000;
-  // One card wrong (due now) -> it is picked.
-  let states = replay([review(cards[0].id, 'wrong', now - 1)]);
+  const now = 10 * DAY;
+  // One card wrong a while ago (due) -> it is picked.
+  let states = replay([review(cards[0].id, 'wrong', now - 10 * MIN)]);
   assert.equal(pickCard(cards, states, now).id, cards[0].id);
-  // ...unless it was the last card shown and others exist.
-  assert.notEqual(pickCard(cards, states, now, { avoid: cards[0].id }).id, cards[0].id);
-  // Learning slots full and nothing due -> practice the soonest-due seen card, not a new one.
-  states = replay(cards.slice(0, 3).map((c, i) => review(c.id, 'right', now - i)));
-  const picked = pickCard(cards, states, now, { maxLearning: 3 });
-  assert.ok(states.has(picked.id));
+  // ...but not straight after it was answered.
+  states = replay([review(cards[0].id, 'wrong', now - 1)]);
+  assert.notEqual(pickCard(cards, states, now).id, cards[0].id);
+  // Learning slots full and nothing due -> practice a seen card (the one not just answered), not a new one.
+  states = replay(cards.slice(0, 4).map((c, i) => review(c.id, 'right', now - 4 * MIN + i)));
+  assert.equal(pickCard(cards, states, now, { maxLearning: 4 }).id, cards[0].id);
+});
+
+// Everything mastered, then two misses in a row. They used to alternate until both were back
+// at mastered (multiple choice twice, typed twice, each) before any other card came up.
+test('pickCard: misses among mastered cards come back spaced out, not drilled', () => {
+  const t0 = 100 * DAY;
+  const reviews = deck.cards.flatMap((c, i) =>
+    [0, 1, 2, 3].map((k) => review(c.id, 'right', t0 - 2 * DAY - i * 20 * MIN + k))); // box 4, none due
+  const shown = [];
+  for (let i = 0; i < 40; i++) {
+    const now = t0 + i * 10_000; // one answer every 10 s
+    const c = pickCard(deck.cards, replay(reviews), now);
+    reviews.push(review(c.id, i < 2 ? 'wrong' : 'right', now));
+    shown.push(c.id);
+  }
+  const at = (id) => shown.flatMap((x, i) => (x === id ? [i] : []));
+  // Missed at 0 and 1; back after 3 other cards; then each waits out its 5 minutes (30 cards).
+  assert.deepEqual(at(shown[0]), [0, 4, 34]);
+  assert.deepEqual(at(shown[1]), [1, 5, 35]);
 });
 
 test('choices: 4 unique options including the answer, same region first', () => {

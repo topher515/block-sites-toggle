@@ -72,7 +72,6 @@ function makeDeckMode(meta) {
         : textRenderer(stage);
 
       let current = null; // { card, kind, answered }
-      let lastCardId = null;
       const byId = new Map(deck.cards.map((c) => [c.id, c]));
       // Space acts on keydown, but a focused button clicks on Space keyup, and focus lands on
       // "Another" right after answering. Swallow that keyup so one press doesn't skip a card.
@@ -88,10 +87,7 @@ function makeDeckMode(meta) {
 
       async function ask() {
         const states = replay(await ctx.events({ type: 'review' }));
-        const card = pickCard(deck.cards, states, ctx.now(), {
-          maxLearning: ctx.settings.maxLearning,
-          avoid: lastCardId,
-        });
+        const card = pickCard(deck.cards, states, ctx.now(), { maxLearning: ctx.settings.maxLearning });
         const state = states.get(card.id);
         const kind = questionKind(state, ctx.settings);
         current = { card, kind, answered: false };
@@ -137,7 +133,6 @@ function makeDeckMode(meta) {
         if (!current || current.answered) return;
         current.answered = true;
         const { card } = current;
-        lastCardId = card.id;
         await ctx.log('review', { card: card.id, result, how });
         renderer.reveal(card, { picked: extra.picked });
 

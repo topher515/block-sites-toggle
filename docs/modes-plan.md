@@ -124,6 +124,7 @@ src/modules/flashcards/
 **Progression** (per card, derived from `review` events):
 - Leitner boxes 0–4. Correct moves a card up a box, wrong drops it to 0. Higher boxes come due less often.
 - Boxes 0–1 are **multiple choice** (4 options). Boxes 2+ are **typed**. This is your "upgrade to typing", done per card, so you type Kenya long before you type Eswatini.
+- A missed card isn't drilled. The last 3 cards answered (in the last 5 minutes) are held back, so a miss comes back after a few others. When nothing is due, extra practice comes from cards on day-or-longer intervals; a card on its 5-minute or 1-hour step waits for it instead of being pulled forward.
 - Every card has an **"I don't know"** button, in both multiple-choice and typed modes. It reveals the answer, sends the card back to box 0 like a wrong answer, and is logged as `result: "dunno"`, separately from a wrong guess, so stats can tell "never seen it" apart from "confused it with Burundi".
 - Distractors come from the same region (`group`), so a wrong answer is plausible: Rwanda vs Burundi, not Rwanda vs Morocco.
 - Typed answers are forgiving: case- and accent-insensitive, aliases ("Ivory Coast" = "Côte d'Ivoire", "DRC"), Levenshtein ≤ 1.
