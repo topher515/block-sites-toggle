@@ -33,13 +33,22 @@ export function replay(reviews) {
   return states;
 }
 
+// Cards still locked: a card with `requires: [ids]` waits until all of those are at
+// TYPED_FROM_BOX or higher. Once it has been asked it stays unlocked.
+export function available(cards, states) {
+  return cards.filter((c) => !c.requires || states.has(c.id)
+    || c.requires.every((id) => (states.get(id)?.box ?? 0) >= TYPED_FROM_BOX));
+}
+
 export function questionKind(state, { typing = true } = {}) {
   return typing && state && state.box >= TYPED_FROM_BOX ? 'typed' : 'mc';
 }
 
 // Choose the next card, skipping the ones just answered (RECENT_CARDS):
 //   1. due cards, lowest box first, then most overdue
-//   2. a new card, if fewer than `maxLearning` cards are still in multiple-choice boxes
+//   2. a new card, if fewer than `maxLearning` cards are still in multiple-choice boxes.
+//      With cards from several decks (`card.deck`), the deck is chosen first, evenly, so a
+//      3-card deck isn't buried under a 54-card one. Within a deck, cards with `seq` come in order.
 //   3. otherwise practice ahead: the card due soonest among those on day-or-longer intervals.
 //      A card on a same-day step (5 min, 1 hour) waits for it rather than being pulled forward
 //      and drilled back up to mastered; it's practiced early only if nothing else is seen.
@@ -60,7 +69,13 @@ export function pickCard(cards, states, now, { maxLearning = 6, rand = Math.rand
 
   const learning = [...states.values()].filter((s) => s.box < TYPED_FROM_BOX).length;
   const fresh = pool.filter((c) => !states.has(c.id));
-  if (fresh.length && learning < maxLearning) return fresh[Math.floor(rand() * fresh.length)];
+  if (fresh.length && learning < maxLearning) {
+    const decks = [...new Set(fresh.map((c) => c.deck))];
+    const deck = decks.length > 1 ? decks[Math.floor(rand() * decks.length)] : decks[0];
+    const from = fresh.filter((c) => c.deck === deck);
+    if (from.some((c) => c.seq != null)) return from.sort((a, b) => (a.seq ?? 0) - (b.seq ?? 0))[0];
+    return from[Math.floor(rand() * from.length)];
+  }
 
   const ahead = seen.filter((c) => INTERVALS[states.get(c.id).box] >= DAY);
   if (ahead.length) return ahead.sort(byDue)[0];

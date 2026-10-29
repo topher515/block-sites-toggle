@@ -1,5 +1,7 @@
 .fc { display: flex; flex-direction: column; align-items: center; text-align: center; }
 .fc-stage { width: 100%; display: flex; justify-content: center; }
+.fc-pane { width: 100%; display: flex; justify-content: center; }
+.fc-pane[hidden] { display: none; }
 .fc-map { width: 100%; max-width: 520px; max-height: 56vh; height: auto; }
 .fc-map g path { fill: var(--map-land); stroke: var(--map-edge); stroke-width: 0.8; stroke-linejoin: round; }
 .fc-map g[data-id="EH"] path { fill: var(--map-other); }
@@ -8,7 +10,7 @@
 .fc-marker { fill: none; stroke-width: 3; }
 .fc-marker.target { stroke: var(--accent); }
 .fc-marker.picked { stroke: var(--bad); }
-.fc-text { font-size: 44px; font-weight: 700; padding: 40px 0; }
+.fc-text { font-size: 44px; font-weight: 700; padding: 40px 0; letter-spacing: 0.04em; }
 .fc-prompt { margin-top: 12px; font-size: 22px; }
 .fc-answer { width: 100%; max-width: 520px; }
 .fc-choices { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }

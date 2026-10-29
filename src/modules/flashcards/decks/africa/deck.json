@@ -2,6 +2,7 @@
  "id": "africa",
  "title": "Africa: countries",
  "prompt": "Which country is highlighted?",
+ "noun": "country",
  "wikipedia": true,
  "cards": [
   {

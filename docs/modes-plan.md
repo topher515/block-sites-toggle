@@ -2,6 +2,8 @@
 
 Status (2026-10-12): phases 0–4 are built and tested. Sync uses the Cloudflare Worker (decided after this plan was written, which originally proposed a GitHub repo). Phase 5 extras are not built yet. Code is the source of truth. This doc is the rationale.
 
+Update (2026-10-28): modes now have a category, and the popup flips between **Physical** (Fitness) and **Memorization**. The one-mode-per-deck flashcards became a single Memorization mode that schedules every enabled deck in one queue (Leitner boxes, `srs.js`; merged by `pool.js`). New cards are drawn deck by deck, evenly, so a small deck isn't buried under a big one. Decks so far: Africa, US states, and a phone number entered on the options page (area code, middle three, last four, then the whole number once those are learned).
+
 ## The idea
 
 Today a blocked site redirects to a static "Stay focused" page. Change that page into a small **activity host**. It shows whichever **mode** is active, and the mode gives you something useful to do while you wait (for an agent, a build, etc.):

@@ -1,11 +1,14 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { replay, pickCard, questionKind, choices, INTERVALS, TYPED_FROM_BOX } from '../src/modules/flashcards/srs.js';
+import { replay, pickCard, available, questionKind, choices, INTERVALS, TYPED_FROM_BOX } from '../src/modules/flashcards/srs.js';
+import { combine, deckStates, qid } from '../src/modules/flashcards/pool.js';
+import { phoneCards, parseNumber, checkDigits } from '../src/modules/flashcards/phone.js';
 import { check, normalize } from '../src/modules/flashcards/match.js';
 import { favoriteFact, randomFact } from '../src/modules/flashcards/facts.js';
 
 const deck = JSON.parse(fs.readFileSync(new URL('../src/modules/flashcards/decks/africa/deck.json', import.meta.url)));
+const states50 = JSON.parse(fs.readFileSync(new URL('../src/modules/flashcards/decks/states/deck.json', import.meta.url)));
 const card = (id) => deck.cards.find((c) => c.id === id);
 const review = (cardId, result, ts) => ({ ts, data: { card: cardId, result, how: 'mc' } });
 const MIN = 60_000;
@@ -122,4 +125,69 @@ test('randomFact never returns the favorite', () => {
   const ke = card('KE');
   for (const r of [0, 0.3, 0.6, 0.999]) assert.notEqual(randomFact(ke, ke.facts[0], () => r), ke.facts[0]);
   assert.equal(randomFact({ facts: ['only'] }, 'only'), null);
+});
+
+test('states deck has 50 unique states, all on the map', () => {
+  assert.equal(states50.cards.length, 50);
+  assert.equal(new Set(states50.cards.map((c) => c.id)).size, 50);
+  const svg = fs.readFileSync(new URL('../src/modules/flashcards/decks/states/map.svg', import.meta.url), 'utf8');
+  for (const c of states50.cards) assert.ok(svg.includes(`data-id="${c.id}"`), c.id);
+  assert.ok(states50.cards.every((c) => c.group));
+});
+
+test('phone: 10 digits (or 1 + 10), split 3-3-4, whole number locked behind the parts', () => {
+  assert.equal(parseNumber('(415) 555-0123'), '4155550123');
+  assert.equal(parseNumber('+1 415 555 0123'), '4155550123');
+  assert.equal(parseNumber('555-0123'), null);
+  assert.deepEqual(phoneCards(''), []);
+  const cards = phoneCards('415-555-0123', 'her number');
+  assert.deepEqual(cards.map((c) => c.answer), ['415', '555', '0123', '(415) 555-0123']);
+  assert.equal(cards[2].prompt, '(415) 555-____');
+  assert.deepEqual(cards[3].requires, cards.slice(0, 3).map((c) => c.id));
+  // A different number gets different ids, so it starts fresh.
+  assert.notEqual(phoneCards('415-555-0124')[0].id, cards[0].id);
+});
+
+test('phone: typed digits must match exactly, punctuation ignored', () => {
+  const [, , last, whole] = phoneCards('415-555-0123');
+  assert.ok(checkDigits('0123', last).ok);
+  assert.ok(!checkDigits('0124', last).ok);
+  assert.ok(checkDigits('415.555.0123', whole).ok);
+  assert.ok(checkDigits('1 415 555 0123', whole).ok);
+  assert.ok(!checkDigits('', whole).ok);
+});
+
+test('available: a card with requires waits for them to reach typing, then stays', () => {
+  const cards = phoneCards('4155550123');
+  const [a, m, l, w] = cards.map((c) => c.id);
+  const ups = (id, n, t = 0) => Array.from({ length: n }, (_, i) => review(id, 'right', t + i));
+  assert.ok(!available(cards, replay([...ups(a, 2), ...ups(m, 2), ...ups(l, 1)])).some((c) => c.id === w));
+  assert.ok(available(cards, replay([...ups(a, 2), ...ups(m, 2), ...ups(l, 2)])).some((c) => c.id === w));
+  // Missing a part later doesn't re-lock the whole number once it has been asked.
+  const later = replay([...ups(a, 2), ...ups(m, 2), ...ups(l, 2), review(w, 'right', 10), review(a, 'wrong', 11)]);
+  assert.ok(available(cards, later).some((c) => c.id === w));
+});
+
+test('combine: decks keep their own ids and states, merged under deck:card', () => {
+  const pool = combine([
+    { id: 'africa', cards: deck.cards, reviews: [review('KE', 'right', 1)] },
+    { id: 'phone', cards: phoneCards('4155550123'), reviews: [] },
+  ]);
+  assert.equal(pool.cards.length, 58);
+  assert.equal(pool.states.get(qid('africa', 'KE')).box, 1);
+  const whole = pool.cards.find((c) => c.deck === 'phone' && c.requires);
+  assert.ok(whole.requires.every((id) => id.startsWith('phone:')));
+  assert.deepEqual([...deckStates(pool.states, 'africa').keys()], ['KE']);
+});
+
+test('pickCard: new cards come from each deck evenly, and phone parts in order', () => {
+  const pool = combine([
+    { id: 'africa', cards: deck.cards, reviews: [] },
+    { id: 'phone', cards: phoneCards('4155550123'), reviews: [] },
+  ]);
+  const cards = available(pool.cards, pool.states);
+  assert.equal(pickCard(cards, pool.states, 0, { rand: () => 0 }).deck, 'africa');
+  const p = pickCard(cards, pool.states, 0, { rand: () => 0.99 });
+  assert.equal(p.deck, 'phone');
+  assert.equal(p.answer, '415');
 });
