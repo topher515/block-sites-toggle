@@ -12,8 +12,22 @@ export const MODES = registry
   .flatMap(({ dir, exports }) => (Array.isArray(exports) ? exports : [exports]).map((m) => ({ ...m, dir })))
   .sort((a, b) => (a.order ?? 100) - (b.order ?? 100) || a.title.localeCompare(b.title));
 
+// The popup flips between these. A mode joins one with `category`.
+export const CATEGORIES = [
+  { id: 'physical', title: 'Physical 💪' },
+  { id: 'memorization', title: 'Memorization 🧠' },
+];
+
+// A mode's `aliases` are ids it used to have, so a saved choice survives a rename.
 export function findMode(id) {
-  return MODES.find((m) => m.id === id) || MODES.find((m) => m.id === 'focus') || MODES[0];
+  return MODES.find((m) => m.id === id)
+    || MODES.find((m) => m.aliases?.includes(id))
+    || MODES.find((m) => m.id === 'focus')
+    || MODES[0];
+}
+
+export function modesIn(category) {
+  return MODES.filter((m) => m.category === category);
 }
 
 export async function getActiveMode() {
@@ -44,6 +58,8 @@ export async function makeCtx(mode, { blocked = null } = {}) {
       ctx.settings = await getModeSettings(mode);
     },
     log: (type, data) => logEvent(mode.id, type, data),
+    // Append to another namespace, for a mode that keeps sub-logs (one per flashcard deck).
+    logIn: (modeId, type, data) => logEvent(modeId, type, data),
     undo: (target) => logEvent(mode.id, 'undo', { target }),
     // Effective (undo-applied) events for this mode, oldest first, from all devices.
     async events({ type, since } = {}) {

@@ -27,6 +27,7 @@ export default {
   title: 'Fitness 💪',
   description: 'Do a set instead. Counts reps today, this week and ever.',
   order: 10,
+  category: 'physical',
   defaultSettings: {
     exercises: [
       { id: 'pushup', label: 'Push-ups', dailyGoal: 50 },

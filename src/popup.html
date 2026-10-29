@@ -11,6 +11,8 @@
       #sections small { display: block; color: var(--muted); margin: -2px 0 8px 4px; font-size: 12px; }
       .mode { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); }
       #summary, #sync { margin-top: 4px; }
+      .flip { display: flex; gap: 6px; margin-bottom: 8px; }
+      .flip button { flex: 1; }
       #warn { color: var(--bad); font-size: 12px; margin-bottom: 8px; }
       #warn:empty { display: none; }
     </style>
@@ -20,7 +22,8 @@
     <div class="label">Enable blocking</div>
     <div id="sections"></div>
     <div class="mode">
-      <div>Mode: <strong id="mode-title"></strong> · <a href="options.html" target="_blank">change…</a></div>
+      <div id="flip" class="flip"></div>
+      <div>Mode: <strong id="mode-title"></strong> · <a href="options.html" target="_blank">more…</a></div>
       <div id="summary" class="muted small"></div>
       <div id="sync" class="muted small"></div>
     </div>

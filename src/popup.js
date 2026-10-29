@@ -2,7 +2,7 @@ import { h } from './core/dom.js';
 import { getSections, getEnabled, setEnabled, getSyncConfig, getSyncState } from './core/settings.js';
 import { siteToHost } from './core/rules.js';
 import { applyRulesNow, missingPermissions } from './core/blocking.js';
-import { getActiveMode, makeCtx } from './core/modes.js';
+import { CATEGORIES, modesIn, getActiveMode, setActiveMode, makeCtx } from './core/modes.js';
 import { ago } from './core/time.js';
 
 async function renderSections() {
@@ -49,12 +49,22 @@ async function renderWarnings() {
   }
 }
 
+// Physical / Memorization. Each button switches to the first mode in that category; the
+// options page still picks any mode (Focus, or a second mode in a category).
 async function renderMode() {
   const mode = await getActiveMode();
+  document.getElementById('flip').replaceChildren(
+    ...CATEGORIES.filter((c) => modesIn(c.id).length).map((c) =>
+      h('button', {
+        class: mode.category === c.id ? 'on' : '',
+        onclick: async () => {
+          if (mode.category !== c.id) await setActiveMode(modesIn(c.id)[0].id);
+          renderMode();
+        },
+      }, c.title)),
+  );
   document.getElementById('mode-title').textContent = mode.title;
-  if (mode.summary) {
-    document.getElementById('summary').textContent = await mode.summary(await makeCtx(mode));
-  }
+  document.getElementById('summary').textContent = mode.summary ? await mode.summary(await makeCtx(mode)) : '';
 }
 
 async function renderSync() {
