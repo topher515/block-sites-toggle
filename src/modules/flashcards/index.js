@@ -86,7 +86,7 @@ export default {
     phoneLabel: 'her number',
     phoneNumber: '', // set on the options page; never committed
     typing: true,     // graduate cards to typed answers
-    maxLearning: 6,   // how many cards can be in the multiple-choice stage at once, across decks
+    maxLearning: 6,   // how many cards each deck can have in the multiple-choice stage at once
   },
 
   async mount(el, ctx) {
@@ -288,7 +288,7 @@ export default {
         h('div', { class: 'muted small' }, 'The second box is how questions name it: “Area code of her number”.'),
       ),
       h('label', { class: 'row' }, typing, 'Graduate cards to typing the answer'),
-      h('label', { class: 'row' }, maxLearning, 'new cards in play at once (all decks together)'),
+      h('label', { class: 'row' }, maxLearning, 'new cards in play at once, per deck'),
       h('div', { class: 'row' },
         h('button', {
           class: 'primary',

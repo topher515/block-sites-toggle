@@ -8,7 +8,7 @@ import { check, normalize } from '../src/modules/flashcards/match.js';
 import { favoriteFact, randomFact } from '../src/modules/flashcards/facts.js';
 
 const deck = JSON.parse(fs.readFileSync(new URL('../src/modules/flashcards/decks/africa/deck.json', import.meta.url)));
-const states50 = JSON.parse(fs.readFileSync(new URL('../src/modules/flashcards/decks/states/deck.json', import.meta.url)));
+const inland = JSON.parse(fs.readFileSync(new URL('../src/modules/flashcards/decks/states/deck.json', import.meta.url)));
 const card = (id) => deck.cards.find((c) => c.id === id);
 const review = (cardId, result, ts) => ({ ts, data: { card: cardId, result, how: 'mc' } });
 const MIN = 60_000;
@@ -29,11 +29,17 @@ test('africa deck: shape stories are text or null', () => {
 });
 
 test('replay: right moves up, wrong and dunno reset', () => {
-  const s = replay([review('KE', 'right', 1), review('KE', 'right', 2), review('UG', 'right', 1), review('UG', 'dunno', 5)]);
+  const s = replay([review('KE', 'wrong', 1), review('KE', 'right', 2), review('KE', 'right', 3), review('UG', 'right', 1), review('UG', 'dunno', 5)]);
   assert.equal(s.get('KE').box, 2);
-  assert.equal(s.get('KE').due, 2 + INTERVALS[2]);
+  assert.equal(s.get('KE').due, 3 + INTERVALS[2]);
   assert.equal(s.get('UG').box, 0);
   assert.equal(s.get('UG').wrong, 1);
+});
+
+test('replay: right the first time skips the multiple-choice stage', () => {
+  const s = replay([review('KE', 'right', 1), review('KE', 'right', 2)]);
+  assert.equal(replay([review('KE', 'right', 1)]).get('KE').box, TYPED_FROM_BOX);
+  assert.equal(s.get('KE').box, TYPED_FROM_BOX + 1);
 });
 
 test('questionKind graduates to typing at TYPED_FROM_BOX', () => {
@@ -53,7 +59,7 @@ test('pickCard prefers due cards, then new cards up to maxLearning', () => {
   states = replay([review(cards[0].id, 'wrong', now - 1)]);
   assert.notEqual(pickCard(cards, states, now).id, cards[0].id);
   // Learning slots full and nothing due -> practice a seen card (the one not just answered), not a new one.
-  states = replay(cards.slice(0, 4).map((c, i) => review(c.id, 'right', now - 4 * MIN + i)));
+  states = replay(cards.slice(0, 4).flatMap((c, i) => [review(c.id, 'wrong', now - 5 * MIN + i), review(c.id, 'right', now - 4 * MIN + i)]));
   assert.equal(pickCard(cards, states, now, { maxLearning: 4 }).id, cards[0].id);
 });
 
@@ -127,12 +133,13 @@ test('randomFact never returns the favorite', () => {
   assert.equal(randomFact({ facts: ['only'] }, 'only'), null);
 });
 
-test('states deck has 50 unique states, all on the map', () => {
-  assert.equal(states50.cards.length, 50);
-  assert.equal(new Set(states50.cards.map((c) => c.id)).size, 50);
+test('Middle America deck has the 30 inland states, all on the map', () => {
+  assert.equal(inland.cards.length, 30);
+  assert.equal(new Set(inland.cards.map((c) => c.id)).size, 30);
+  for (const id of ['CA', 'NY', 'FL', 'TX', 'AK']) assert.ok(!inland.cards.some((c) => c.id === id), id);
   const svg = fs.readFileSync(new URL('../src/modules/flashcards/decks/states/map.svg', import.meta.url), 'utf8');
-  for (const c of states50.cards) assert.ok(svg.includes(`data-id="${c.id}"`), c.id);
-  assert.ok(states50.cards.every((c) => c.group));
+  for (const c of inland.cards) assert.ok(svg.includes(`data-id="${c.id}"`), c.id);
+  assert.ok(inland.cards.every((c) => c.group));
 });
 
 test('phone: 10 digits (or 1 + 10), split 3-3-4, whole number locked behind the parts', () => {
@@ -161,7 +168,7 @@ test('available: a card with requires waits for them to reach typing, then stays
   const cards = phoneCards('4155550123');
   const [a, m, l, w] = cards.map((c) => c.id);
   const ups = (id, n, t = 0) => Array.from({ length: n }, (_, i) => review(id, 'right', t + i));
-  assert.ok(!available(cards, replay([...ups(a, 2), ...ups(m, 2), ...ups(l, 1)])).some((c) => c.id === w));
+  assert.ok(!available(cards, replay([...ups(a, 2), ...ups(m, 2), review(l, 'wrong', 0), review(l, 'right', 1)])).some((c) => c.id === w));
   assert.ok(available(cards, replay([...ups(a, 2), ...ups(m, 2), ...ups(l, 2)])).some((c) => c.id === w));
   // Missing a part later doesn't re-lock the whole number once it has been asked.
   const later = replay([...ups(a, 2), ...ups(m, 2), ...ups(l, 2), review(w, 'right', 10), review(a, 'wrong', 11)]);
@@ -174,7 +181,7 @@ test('combine: decks keep their own ids and states, merged under deck:card', () 
     { id: 'phone', cards: phoneCards('4155550123'), reviews: [] },
   ]);
   assert.equal(pool.cards.length, 58);
-  assert.equal(pool.states.get(qid('africa', 'KE')).box, 1);
+  assert.equal(pool.states.get(qid('africa', 'KE')).box, TYPED_FROM_BOX);
   const whole = pool.cards.find((c) => c.deck === 'phone' && c.requires);
   assert.ok(whole.requires.every((id) => id.startsWith('phone:')));
   assert.deepEqual([...deckStates(pool.states, 'africa').keys()], ['KE']);
@@ -190,4 +197,17 @@ test('pickCard: new cards come from each deck evenly, and phone parts in order',
   const p = pickCard(cards, pool.states, 0, { rand: () => 0.99 });
   assert.equal(p.deck, 'phone');
   assert.equal(p.answer, '415');
+});
+
+test('pickCard: one deck full of misses still lets new cards in from another', () => {
+  const pool = combine([
+    { id: 'africa', cards: deck.cards, reviews: deck.cards.slice(0, 6).map((c, i) => review(c.id, 'wrong', i)) },
+    { id: 'states', cards: inland.cards, reviews: [] },
+  ]);
+  const now = 1000; // the six misses are due, but held back as just answered only up to 3
+  const fresh = (c) => !pool.states.has(c.id);
+  const notDue = new Map([...pool.states].map(([id, s]) => [id, { ...s, due: now + MIN }]));
+  const c = pickCard(available(pool.cards, notDue), notDue, now, { rand: () => 0 });
+  assert.equal(c.deck, 'states');
+  assert.ok(fresh(c));
 });

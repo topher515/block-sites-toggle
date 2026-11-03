@@ -20,7 +20,9 @@ export function replay(reviews) {
     const { card, result } = e.data;
     const s = states.get(card) || { box: 0, right: 0, wrong: 0, last: 0, due: 0 };
     if (result === 'right') {
-      s.box = Math.min(MAX_BOX, s.box + 1);
+      // Right the first time it's ever asked: already known, so skip the multiple-choice stage
+      // instead of taking up a learning slot. Typing it later checks it wasn't a lucky guess.
+      s.box = s.right + s.wrong === 0 ? TYPED_FROM_BOX : Math.min(MAX_BOX, s.box + 1);
       s.right++;
     } else {
       s.box = 0;
@@ -46,7 +48,7 @@ export function questionKind(state, { typing = true } = {}) {
 
 // Choose the next card, skipping the ones just answered (RECENT_CARDS):
 //   1. due cards, lowest box first, then most overdue
-//   2. a new card, if fewer than `maxLearning` cards are still in multiple-choice boxes.
+//   2. a new card, from a deck with fewer than `maxLearning` cards still in multiple-choice boxes.
 //      With cards from several decks (`card.deck`), the deck is chosen first, evenly, so a
 //      3-card deck isn't buried under a 54-card one. Within a deck, cards with `seq` come in order.
 //   3. otherwise practice ahead: the card due soonest among those on day-or-longer intervals.
@@ -67,10 +69,11 @@ export function pickCard(cards, states, now, { maxLearning = 6, rand = Math.rand
     .sort((a, b) => states.get(a.id).box - states.get(b.id).box || byDue(a, b));
   if (due.length) return due[0];
 
-  const learning = [...states.values()].filter((s) => s.box < TYPED_FROM_BOX).length;
+  // Per deck, so a deck full of misses doesn't keep new cards out of the others.
+  const learning = (deck) => cards.filter((c) => c.deck === deck && states.get(c.id)?.box < TYPED_FROM_BOX).length;
   const fresh = pool.filter((c) => !states.has(c.id));
-  if (fresh.length && learning < maxLearning) {
-    const decks = [...new Set(fresh.map((c) => c.deck))];
+  const decks = [...new Set(fresh.map((c) => c.deck))].filter((d) => learning(d) < maxLearning);
+  if (decks.length) {
     const deck = decks.length > 1 ? decks[Math.floor(rand() * decks.length)] : decks[0];
     const from = fresh.filter((c) => c.deck === deck);
     if (from.some((c) => c.seq != null)) return from.sort((a, b) => (a.seq ?? 0) - (b.seq ?? 0))[0];
