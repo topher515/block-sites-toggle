@@ -25,8 +25,9 @@ export const DECKS = [
   },
   {
     id: 'states',
-    title: 'US states 🇺🇸',
-    description: 'Name the highlighted US state.',
+    title: 'Middle America 🌽',
+    // The coastal states (Pacific, Atlantic, Texas) are drawn on the map but not asked.
+    description: 'Name the highlighted inland US state.',
     renderer: () => import('./decks/states/render.js'),
   },
   {

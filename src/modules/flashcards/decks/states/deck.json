@@ -1,6 +1,6 @@
 {
  "id": "states",
- "title": "US states",
+ "title": "Middle America",
  "prompt": "Which state is highlighted?",
  "noun": "state",
  "wikipedia": true,
@@ -10,12 +10,6 @@
    "answer": "Alabama",
    "aliases": [],
    "group": "South Central"
-  },
-  {
-   "id": "AK",
-   "answer": "Alaska",
-   "aliases": [],
-   "group": "Pacific"
   },
   {
    "id": "AZ",
@@ -30,47 +24,10 @@
    "group": "South Central"
   },
   {
-   "id": "CA",
-   "answer": "California",
-   "aliases": [],
-   "group": "Pacific"
-  },
-  {
    "id": "CO",
    "answer": "Colorado",
    "aliases": [],
    "group": "Mountain"
-  },
-  {
-   "id": "CT",
-   "answer": "Connecticut",
-   "aliases": [],
-   "group": "New England"
-  },
-  {
-   "id": "DE",
-   "answer": "Delaware",
-   "aliases": [],
-   "group": "Mid-Atlantic"
-  },
-  {
-   "id": "FL",
-   "answer": "Florida",
-   "aliases": [],
-   "group": "Southeast"
-  },
-  {
-   "id": "GA",
-   "answer": "Georgia",
-   "aliases": [],
-   "group": "Southeast",
-   "wiki": "Georgia_(U.S._state)"
-  },
-  {
-   "id": "HI",
-   "answer": "Hawaii",
-   "aliases": [],
-   "group": "Pacific"
   },
   {
    "id": "ID",
@@ -115,24 +72,6 @@
    "group": "South Central"
   },
   {
-   "id": "ME",
-   "answer": "Maine",
-   "aliases": [],
-   "group": "New England"
-  },
-  {
-   "id": "MD",
-   "answer": "Maryland",
-   "aliases": [],
-   "group": "Mid-Atlantic"
-  },
-  {
-   "id": "MA",
-   "answer": "Massachusetts",
-   "aliases": [],
-   "group": "New England"
-  },
-  {
    "id": "MI",
    "answer": "Michigan",
    "aliases": [],
@@ -175,37 +114,10 @@
    "group": "Mountain"
   },
   {
-   "id": "NH",
-   "answer": "New Hampshire",
-   "aliases": [],
-   "group": "New England"
-  },
-  {
-   "id": "NJ",
-   "answer": "New Jersey",
-   "aliases": [],
-   "group": "Mid-Atlantic"
-  },
-  {
    "id": "NM",
    "answer": "New Mexico",
    "aliases": [],
    "group": "Mountain"
-  },
-  {
-   "id": "NY",
-   "answer": "New York",
-   "aliases": [
-    "New York State"
-   ],
-   "group": "Mid-Atlantic",
-   "wiki": "New_York_(state)"
-  },
-  {
-   "id": "NC",
-   "answer": "North Carolina",
-   "aliases": [],
-   "group": "Southeast"
   },
   {
    "id": "ND",
@@ -226,28 +138,10 @@
    "group": "South Central"
   },
   {
-   "id": "OR",
-   "answer": "Oregon",
-   "aliases": [],
-   "group": "Pacific"
-  },
-  {
    "id": "PA",
    "answer": "Pennsylvania",
    "aliases": [],
    "group": "Mid-Atlantic"
-  },
-  {
-   "id": "RI",
-   "answer": "Rhode Island",
-   "aliases": [],
-   "group": "New England"
-  },
-  {
-   "id": "SC",
-   "answer": "South Carolina",
-   "aliases": [],
-   "group": "Southeast"
   },
   {
    "id": "SD",
@@ -262,12 +156,6 @@
    "group": "South Central"
   },
   {
-   "id": "TX",
-   "answer": "Texas",
-   "aliases": [],
-   "group": "South Central"
-  },
-  {
    "id": "UT",
    "answer": "Utah",
    "aliases": [],
@@ -278,21 +166,6 @@
    "answer": "Vermont",
    "aliases": [],
    "group": "New England"
-  },
-  {
-   "id": "VA",
-   "answer": "Virginia",
-   "aliases": [],
-   "group": "Southeast"
-  },
-  {
-   "id": "WA",
-   "answer": "Washington",
-   "aliases": [
-    "Washington State"
-   ],
-   "group": "Pacific",
-   "wiki": "Washington_(state)"
   },
   {
    "id": "WV",
